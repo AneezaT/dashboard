@@ -3,322 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friendcovery Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #12121c; color: #ffffff; }
-        .sidebar-item-active { background-color: #3b3b4f; border-radius: 4px; }
-        .card-bg { background-color: #1e1e2d; }
-        .btn-orange { background-color: #e67e5f; }
-        .text-muted { color: #9494b8; }
-        .border-gray { border-color: #2d2d3d; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f0f17; }
+        /* Sidebar scrollbar ko hide karne ke liye */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #12121c; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2d2d3d; border-radius: 10px; }
     </style>
 </head>
-<body class="flex min-h-screen">
+<body class="text-white antialiased">
 
-    <aside class="w-64 border-r border-gray flex flex-col p-6 space-y-8">
-        <div class="flex items-center gap-2 px-2">
-            <div class="bg-white rounded-full p-1"><i data-lucide="activity" class="text-black w-5 h-5"></i></div>
-            <span class="font-bold tracking-wider text-lg">FRIENDCOVERY</span>
+    <header class="h-[55px] border-b border-[#1e1e2d] flex items-center justify-between px-10 bg-[#12121c] sticky top-0 z-50">
+        <div class="flex items-center gap-3 px-2">
+            <div class="bg-black rounded-full w-9 h-9 flex items-center justify-center overflow-hidden shrink-0">
+                <img src="assets/L.png" alt="Friendcovery Logo" class="w-full h-full object-contain p-1.5">
+            </div>
+            <span class="font-semibold tracking-wider text-lg">FRIENDCOVERY</span>
         </div>
-
-        <nav class="space-y-1 text-sm">
-            <div class="sidebar-item-active p-3 flex items-center gap-3 cursor-pointer">
-                <i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard
-            </div>
-            <div class="p-3 text-muted hover:text-white flex items-center gap-3 cursor-pointer">
-                <i data-lucide="users" class="w-4 h-4"></i> All Patients
-            </div>
-            <div class="p-3 text-muted hover:text-white flex items-center gap-3 cursor-pointer">
-                <i data-lucide="messages-square" class="w-4 h-4"></i> Support Group
-            </div>
-            <div class="p-3 text-muted hover:text-white flex items-center gap-3 cursor-pointer">
-                <i data-lucide="file-text" class="w-4 h-4"></i> Articles / Papers
-            </div>
-            <div class="p-3 text-muted hover:text-white flex items-center gap-3 cursor-pointer">
-                <i data-lucide="credit-card" class="w-4 h-4"></i> Price Plans
-            </div>
-        </nav>
-
-        <div>
-            <div class="flex items-center justify-between mb-4">
-                <h4 class="text-[10px] font-bold uppercase text-muted tracking-widest">Notifications</h4>
-                <i data-lucide="bell" class="w-3 h-3 text-yellow-500"></i>
-            </div>
-            <div class="space-y-3 text-[11px] leading-relaxed">
-                <div class="bg-[#252535] p-3 rounded-lg border-l-2 border-blue-500">Your "Mindful Mornings" routine is now live...</div>
-                <div class="bg-[#252535] p-3 rounded-lg">Review updated formatting and tone policies...</div>
-                <div class="bg-[#252535] p-3 rounded-lg">Your latest paper has comments from the team.</div>
-                <div class="bg-[#252535] p-3 rounded-lg">Meeting scheduled for Tuesday at 3:00 PM.</div>
-                <button class="text-blue-400 mt-2 block w-full text-left">View All</button>
+        <div class="flex items-center gap-2 pr-2">
+            <span class="text-[white] text-[15px]">Profile</span>
+            <div class="w-7 h-7 flex items-center justify-center text-[#9494b8]">
+                <img src="assets/Profile.png" alt="Profile">
             </div>
         </div>
-        
-<div class="btn-orange p-5 rounded-xl mt-auto relative overflow-hidden group">
-    <div class="absolute -right-2 -top-2 opacity-20 group-hover:scale-110 transition-transform">
-        <i data-lucide="users-2" class="w-16 h-16"></i>
+    </header>
+
+    <div class="flex px-10 gap-6">
+        <aside class="w-[300px] border-r border-[#1e1e2d] h-[calc(100vh-55px)] flex flex-col p-3 gap-3 bg-[#12121c] overflow-y-auto no-scrollbar shrink-0">
+            
+            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-3">
+                <div class="bg-[#3f3f51] text-white p-2 rounded-[4px] flex items-center gap-3 mb-4">
+                    <div class="grid grid-cols-2 gap-0.5">
+                        <div class="w-1.5 h-1.5 bg-[#d66a52] rounded-[1px]"></div>
+                        <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
+                        <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
+                        <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
+                    </div>
+                    <span class="text-[13px] font-medium">Dashboard</span>
+                </div>
+                <div class="flex flex-col space-y-3.5 pl-9 text-[#9494b8] text-[12px]">
+                    <div class="hover:text-white cursor-pointer">All Patients</div>
+                    <div class="hover:text-white cursor-pointer">Support Group</div>
+                    <div class="hover:text-white cursor-pointer">Articles / Papers</div>
+                    <div class="hover:text-white cursor-pointer">Price Plans</div>
+                </div>
+            </div>
+
+            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-3">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="text-white text-[14px] font-bold tracking-tight">Notifications</h4>
+                    <div class="bg-[#f5c362] rounded-full w-5 h-5 flex items-center justify-center">
+                        <span class="text-[10px]">🔔</span>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="bg-[#3a3a4b] text-[#efeff5] p-2.5 rounded-[4px] text-[10px] leading-snug border border-white/5">Your “Mindful Mornings” routine is now live and visible to patients.</div>
+                    <div class="bg-[#3a3a4b] text-[#efeff5] p-2.5 rounded-[4px] text-[10px] leading-snug border border-white/5">Review the updated formatting and tone policies before your next upload.</div>
+                    <div class="bg-[#3a3a4b] text-[#efeff5] p-2.5 rounded-[4px] text-[10px] leading-snug border border-white/5">Your latest paper has comments and suggestions from the content team.</div>
+                    <div class="bg-[#3a3a4b] text-[#efeff5] p-2.5 rounded-[4px] text-[10px] leading-snug border border-white/5">A meeting with your care provider has been scheduled for Tuesday at 3:00 PM.</div>
+                    <button class="text-white text-[11px] font-bold underline mt-1">View All</button>
+                </div>
+            </div>
+
+            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-2">
+                <div class="bg-[#d66a52] p-4 rounded-[4px] flex flex-col gap-3">
+                    <img src="assets/Group 521 (1).png" class="w-8 h-8 opacity-90" alt="icon">
+                    <h2 class="text-white text-[16px] font-bold leading-tight">Create Session / <br> Meeting with Patients</h2>
+                    <p class="text-white/90 text-[10px] leading-relaxed">Plan personalized check-ins, wellness sessions, or consultations tailored to individual needs.</p>
+                    <div class="border-t border-white/10 pt-2 mt-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-white text-[13px] font-bold">→ Schedule Meeting</span>
+                        </div>
+                        <p class="text-white/70 text-[9px] pl-4">Coordinate times, set objectives, and ensure seamless communication.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 py-6 overflow-y-auto h-[calc(100vh-55px)] custom-scrollbar">
+            
+            <div class="flex gap-4 mb-6">
+                <div class="flex-1 min-h-[220px] rounded-[4px] border border-[#2d2d3d] relative overflow-hidden flex flex-col justify-center p-8
+                bg-[#12121c] 
+                bg-[linear-gradient(105deg,_#12121c_0%,_#1a1a2e_50%,_#12121c_100%)]
+                before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_20%_30%,#31315a_0%,transparent_60%)] before:opacity-70
+                after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_90%_50%,#4a306d_0%,transparent_50%)] after:opacity-40">
+                    
+                    <div class="relative z-20">
+                        <div class="flex items-center mb-5">
+                            <div class="flex -space-x-2.5">
+                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover" src="https://i.pravatar.cc/100?u=8" alt="u1">
+                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover" src="https://i.pravatar.cc/100?u=12" alt="u2">
+                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover" src="https://i.pravatar.cc/100?u=25" alt="u3">
+                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover" src="https://i.pravatar.cc/100?u=33" alt="u4">
+                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover" src="https://i.pravatar.cc/100?u=44" alt="u5">
+                            </div>
+                        </div>
+                        <div class="inline-block mb-1">
+                            <span class="text-[#FFD972] text-[12px] font-bold tracking-tight border-b border-[#f5c362]/40 pb-0.5">50+ Members</span>
+                        </div>
+                        <h1 class="text-white text-[28px] font-bold tracking-tight leading-tight mt-2 mb-3">Mayo Clinic – Rochester, Minnesota</h1>
+                        <p class="text-white text-[13px] leading-relaxed max-w-[620px] font-medium opacity-90">
+                            Choose the type of support that fits your comfort and needs. Whether you prefer to talk, type, or see someone face-to-face — we're here for you.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative w-[280px] shrink-0">
+                    <div class="relative bg-[#12121c] border border-[#2d2d3d] rounded-[10px] p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)] h-full overflow-hidden">
+                        <div class="absolute top-[52px] -left-[18px] w-8 h-8 bg-[#0f0f17] rounded-full border border-[#2d2d3d] z-20 shadow-[inset_-2px_0_5px_rgba(0,0,0,0.5)]"></div>
+                        <div class="absolute top-[52px] -right-[18px] w-8 h-8 bg-[#0f0f17] rounded-full border border-[#2d2d3d] z-20 shadow-[inset_2px_0_5px_rgba(0,0,0,0.5)]"></div>
+                        <div class="flex justify-between items-center mb-4 relative z-10">
+                            <h3 class="text-white text-[16px] font-semibold tracking-tight">Your Current Plan</h3>
+                            <div class="w-8 h-8 rounded-[6px] border border-[#2d2d3d] bg-[#1a1a29] flex items-center justify-center">
+                                <img src="assets/crown_3550612 1.png" alt="Crown" class="w-7 h-7">
+                            </div>
+                        </div>
+                        <div class="relative py-2 px-1"><div class="border-t border-dashed border-[#2d2d3d] w-full opacity-50"></div></div>
+                        <div class="mt-4 relative z-10">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h2 class="text-[#FFD972] text-[20px] font-bold tracking-tight">Starter Basic</h2>
+                                <span class="text-white text-[18px] font-bold tracking-tighter">$10.20</span>
+                            </div>
+                            <p class="text-[white] text-[11px] leading-relaxed mb-6 font-medium">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <button class="text-white text-[13px] font-bold underline decoration-1 underline-offset-4 hover:text-[#FFD972] transition-all">Update Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <!-- PAGE WRAPPER -->
+<div class="w-full min-h-screen bg-[#0e0f1a] px-6 py-8">
+
+  <!-- ================= TOP 3 CARDS ================= -->
+  <div class="grid grid-cols-3 gap-4 mb-10 w-full">
+
+    <div class="bg-[#5c7cfa] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
+      <div>
+        <div class="w-10 h-10 mb-2">
+          <img src="assets/Group 346.png" alt="Voice">
+        </div>
+        <h3 class="text-white text-[18px] font-bold">Voice Chat</h3>
+      </div>
+      <p class="text-white/90 text-[12px] leading-relaxed">
+        Speak with a wellness coach or AI assistant in real time to share what's on your mind.
+      </p>
     </div>
 
-    <div class="flex flex-col gap-1 mb-4">
-        <div class="flex items-start gap-2">
-            <i data-lucide="users" class="w-5 h-5 mt-0.5 shrink-0"></i>
-            <h5 class="font-bold text-sm leading-tight">Create Session / Meeting with Patients</h5>
+    <div class="bg-[#d66a52] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
+      <div>
+        <div class="w-10 h-10 mb-2">
+          <img src="assets/Group 344.png" alt="Text">
         </div>
-        <p class="text-[10px] ml-7 opacity-90 leading-relaxed">
-            Plan personalized check-ins or consultations tailored to individual needs.
-        </p>
+        <h3 class="text-white text-[18px] font-bold">Text Chat</h3>
+      </div>
+      <p class="text-white/90 text-[12px] leading-relaxed">
+        Start a secure conversation with a therapist, health advisor, or support AI.
+      </p>
     </div>
 
-    <div class="flex flex-col gap-1">
-        <div class="flex items-center gap-2">
-            <i data-lucide="move-right" class="w-4 h-4 shrink-0"></i>
-            <h5 class="font-bold text-sm">Schedule Meeting</h5>
+    <div class="bg-[#f5c362] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
+      <div>
+        <div class="w-10 h-10 mb-2">
+          <img src="assets/Group 613.png" alt="Video">
         </div>
-        <p class="text-[10px] ml-6 opacity-90 leading-relaxed">
-            Coordinate times, set objectives, and ensure seamless communication between care providers and patients.
-        </p>
+        <h3 class="text-black text-[18px] font-bold">Video Call</h3>
+      </div>
+      <p class="text-black/80 text-[12px] leading-relaxed font-medium">
+        Connect face-to-face with licensed professionals for a personal experience.
+      </p>
     </div>
+
+  </div>
+ <hr class="border-t-2 border-dotted border-light black my-9">
+
+  <!-- ================= MAIN 2 CARDS ================= -->
+  <div class="grid grid-cols-2 gap-8 w-full">
+
+    <!-- LEFT CARD -->
+    <div class="bg-gradient-to-b from-[#141526] to-[#0f1020]
+                border border-white/10 rounded-xl p-8 min-h-[720px]">
+
+      <h2 class="text-white text-[22px] font-semibold mb-3">
+        Patients Routine
+      </h2>
+
+      <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
+
+      <p class="text-[#a1a3c7] text-[14px] mb-8">
+        Create and manage personalized care flows to keep patients engaged,
+        informed, and supported daily.
+      </p>
+
+     <div class="space-y-4">
+
+  <!-- ITEM 1 -->
+  <div class="bg-[#3b3c4a] border border-white/20 rounded-lg p-5 flex justify-between items-center">
+    <div>
+      <p class="text-white font-semibold">Daily Routine</p>
+      <p class="text-[#c7c8dd] text-[13px]">Lorem Ipsum is simply dummy text</p>
+    </div>
+
+    <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center
+                transition hover:bg-black group cursor-pointer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="black" stroke-width="3"
+           stroke-linecap="round" stroke-linejoin="round"
+           class="group-hover:stroke-white">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ITEM 2 -->
+  <div class="bg-[#161728] border border-white/10 rounded-lg p-5 flex justify-between items-center">
+    <div>
+      <p class="text-white font-semibold">Weekly Questions</p>
+      <p class="text-[#9da0c7] text-[13px]">Lorem Ipsum is simply dummy text</p>
+    </div>
+
+    <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center
+                transition hover:bg-black group cursor-pointer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="black" stroke-width="3"
+           stroke-linecap="round" stroke-linejoin="round"
+           class="group-hover:stroke-white">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ITEM 3 -->
+  <div class="bg-[#3b3c4a] border border-white/20 rounded-lg p-5 flex justify-between items-center">
+    <div>
+      <p class="text-white font-semibold">Follow-up Questions</p>
+      <p class="text-[#c7c8dd] text-[13px]">Lorem Ipsum is simply dummy text</p>
+    </div>
+
+    <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center
+                transition hover:bg-black group cursor-pointer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="black" stroke-width="3"
+           stroke-linecap="round" stroke-linejoin="round"
+           class="group-hover:stroke-white">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ITEM 4 -->
+  <div class="bg-[#161728] border border-white/10 rounded-lg p-5 flex justify-between items-center">
+    <div>
+      <p class="text-white font-semibold">Urgent Health status confirm</p>
+      <p class="text-[#9da0c7] text-[13px]">Lorem Ipsum is simply dummy text</p>
+    </div>
+
+    <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center
+                transition hover:bg-black group cursor-pointer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="black" stroke-width="3"
+           stroke-linecap="round" stroke-linejoin="round"
+           class="group-hover:stroke-white">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
+  </div>
+
 </div>
 
-    </aside>
 
-    <main class="flex-1 overflow-y-auto bg-[#12121c]">
-        <header class="p-4 border-b border-gray flex justify-between items-center text-xs">
-            <div class="flex items-center gap-4"></div>
-            <div class="flex items-center gap-4 text-muted">
-                <span>Profile</span>
-                <i data-lucide="user-circle" class="w-5 h-5"></i>
-            </div>
-        </header>
+      <button class="mt-10 bg-[#e06a52] hover:bg-[#cc5c46]
+                     text-white px-8 py-4 rounded-lg font-medium">
+        Create Routine For Patients
+      </button>
 
-        <div class="p-8 space-y-8">
-            <div class="flex gap-6">
-                <div class="card-bg flex-1 p-8 rounded-2xl flex items-center justify-between border border-gray">
-                    <div class="flex items-center gap-6">
-                        <div class="flex -space-x-3">
-                            <img src="https://i.pravatar.cc/100?u=1" class="w-12 h-12 rounded-full border-4 border-[#1e1e2d]">
-                            <img src="https://i.pravatar.cc/100?u=2" class="w-12 h-12 rounded-full border-4 border-[#1e1e2d]">
-                            <img src="https://i.pravatar.cc/100?u=3" class="w-12 h-12 rounded-full border-4 border-[#1e1e2d]">
-                        </div>
-                        <div>
-                            <span class="text-yellow-500 text-[10px] font-bold">50+ Members</span>
-                            <h2 class="text-2xl font-bold mt-1">Mayo Clinic – Rochester, Minnesota</h2>
-                            <p class="text-muted text-xs mt-2 max-w-xl">Choose the type of support that fits your comfort and needs. Whether you prefer to talk, type, or see someone face-to-face.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-bg w-72 p-6 rounded-2xl border border-gray">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-muted text-xs font-semibold uppercase">Your Current Plan</span>
-                        <div class="bg-orange-500/20 p-1 rounded"><i data-lucide="crown" class="w-4 h-4 text-orange-500"></i></div>
-                    </div>
-                    <div class="flex justify-between items-end">
-                        <div>
-                            <h3 class="font-bold">Starter Basic</h3>
-                            <p class="text-[9px] text-muted mt-1">Lorem Ipsum is simply dummy text of the printing.</p>
-                        </div>
-                        <span class="text-xl font-bold text-orange-400">$10.20</span>
-                    </div>
-                    <button class="mt-4 text-[10px] font-bold text-blue-400 underline uppercase tracking-tighter">Update Plan</button>
-                </div>
-            </div>
+    </div>
 
-            <div class="grid grid-cols-3 gap-6">
-                <div class="bg-[#5d87ff] p-6 rounded-2xl space-y-4">
-                    <i data-lucide="mic" class="w-6 h-6"></i>
-                    <h4 class="font-bold">Voice Chat</h4>
-                    <p class="text-xs opacity-80">Speak with a wellness coach or AI assistant in real time to share what’s on your mind.</p>
-                </div>
-                <div class="bg-[#e67e5f] p-6 rounded-2xl space-y-4">
-                    <i data-lucide="message-square" class="w-6 h-6"></i>
-                    <h4 class="font-bold">Text Chat</h4>
-                    <p class="text-xs opacity-80">Start a secure conversation with a therapist. Ideal for when you prefer to type.</p>
-                </div>
-                <div class="bg-[#f5c362] p-6 rounded-2xl space-y-4 text-black">
-                    <i data-lucide="video" class="w-6 h-6"></i>
-                    <h4 class="font-bold">Video Call</h4>
-                    <p class="text-xs opacity-80">Connect face-to-face with licensed professionals for a more personal experience.</p>
-                </div>
-            </div>
+    <!-- RIGHT CARD -->
+    <div class="bg-gradient-to-b from-[#2a2b3f] to-[#1b1c2e]
+                border border-white/10 rounded-xl p-8 min-h-[720px]">
 
-            <div class="grid grid-cols-2 gap-8">
-                <div class="card-bg p-6 rounded-2xl border border-gray">
-                    <h3 class="font-bold mb-1">Patients Routine</h3>
-                    <p class="text-[10px] text-muted mb-6">Create and manage personalized care flows to keep patients engaged, informed, and supported every day.</p>
-                    <div class="space-y-3">
-                        <div class="bg-[#12121c] p-4 rounded-xl border border-gray flex justify-between items-center group cursor-pointer hover:border-gray-500">
-                            <div>
-                                <p class="text-xs font-bold">Daily Routine</p>
-                                <p class="text-[9px] text-muted">Lorem Ipsum is simply dummy text</p>
-                            </div>
-                            <i data-lucide="arrow-right-circle" class="w-5 h-5 text-gray-600 group-hover:text-white"></i>
-                        </div>
-                        <div class="bg-[#12121c] p-4 rounded-xl border border-gray flex justify-between items-center group cursor-pointer hover:border-gray-500">
-                            <div>
-                                <p class="text-xs font-bold">Weekly Questions</p>
-                                <p class="text-[9px] text-muted">Lorem Ipsum is simply dummy text</p>
-                            </div>
-                            <i data-lucide="arrow-right-circle" class="w-5 h-5 text-gray-600 group-hover:text-white"></i>
-                        </div>
-                         <div class="bg-[#12121c] p-4 rounded-xl border border-gray flex justify-between items-center group cursor-pointer hover:border-gray-500">
-                            <div>
-                                <p class="text-xs font-bold">Weekly Questions</p>
-                                <p class="text-[9px] text-muted">Lorem Ipsum is simply dummy text</p>
-                            </div>
-                            <i data-lucide="arrow-right-circle" class="w-5 h-5 text-gray-600 group-hover:text-white"></i>
-                        </div>
+      <h2 class="text-white text-[22px] font-semibold mb-3">
+        Patients
+      </h2>
 
-                         <div class="bg-[#12121c] p-4 rounded-xl border border-gray flex justify-between items-center group cursor-pointer hover:border-gray-500">
-                            <div>
-                                <p class="text-xs font-bold">Weekly Questions</p>
-                                <p class="text-[9px] text-muted">Lorem Ipsum is simply dummy text</p>
-                            </div>
-                            <i data-lucide="arrow-right-circle" class="w-5 h-5 text-gray-600 group-hover:text-white"></i>
-                        </div>
+      <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
 
+      <p class="text-[#a1a3c7] text-[14px] mb-8">
+        Create and manage personalized care flows to keep patients engaged,
+        informed, and supported every day.
+      </p>
+
+      <div class="space-y-6 mb-12">
+
+        <!-- REPEAT ROW -->
+       <!-- ROW --> <div class="flex items-center justify-between">
+         <div class="flex items-center gap-4">
+             <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" class="w-10 h-10 rounded-full object-cover">
+              <span class="text-white font-medium">Deacon Smith</span> 
+            
+            </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+             <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button>
+             </div> <div class="flex items-center justify-between"> <div class="flex items-center gap-4"> 
+                <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png" class="w-10 h-10 rounded-full object-cover"> 
+                <span class="text-white font-medium">Alex Blackmore</span> </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                 <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button> 
+                </div> <div class="flex items-center justify-between"> <div class="flex items-center gap-4"> 
+                    <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png" class="w-10 h-10 rounded-full object-cover"> 
+                    <span class="text-white font-medium">Nadine Eckhard</span> </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                     <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button>
+                     </div> <div class="flex items-center justify-between"> <div class="flex items-center gap-4"> 
+                        <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" class="w-10 h-10 rounded-full object-cover"> 
+                        <span class="text-white font-medium">Deacon Smith</span> </div> <span class="text-[#a1a3c7]">Score 71/100</span>
                         
-                    </div>
-                    <button class="btn-orange w-full py-3 rounded-lg text-xs font-bold mt-6 uppercase tracking-wider">Create Routine For Patients</button>
-                </div>
+                        <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button> 
+                    </div> <div class="flex items-center justify-between"> <div class="flex items-center gap-4">
+                         <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png" class="w-10 h-10 rounded-full object-cover">
+                          <span class="text-white font-medium">Alex Blackmore</span> </div> <span class="text-[#a1a3c7]">Score 71/100</span> 
+                          <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button>
+                         </div> <div class="flex items-center justify-between"> <div class="flex items-center gap-4">
+                             <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png" class="w-10 h-10 rounded-full object-cover"> 
+                             <span class="text-white font-medium">Nadine Eckhard</span> </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                              <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button> 
+                           
+                            </div>
+                            <div class="flex items-center justify-between"> <div class="flex items-center gap-4">
+                             <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" class="w-10 h-10 rounded-full object-cover"> 
+                             <span class="text-white font-medium">Deacon Smith</span> </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                              <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold"> View Details </button> 
+                           
+                            </div>
+                            
+                        <div class="flex gap-6">
+        <button class="flex-1 bg-[#e06a52] hover:bg-[#cc5c46]
+                       text-white py-4 rounded-lg font-semibold">
+          Add New Member
+        </button>
+        <button class="flex-1 border border-white/40
+                       text-white py-4 rounded-lg font-semibold">
+          Export User Data
+        </button>
+                        </div>
 
-                <div class="card-bg p-6 rounded-2xl border border-gray">
-                    <h3 class="font-bold mb-1">Patients</h3>
-                    <p class="text-[10px] text-muted mb-6">Create and manage personalized care flows to keep patients engaged, informed, and supported every day.</p>
-                    <div class="space-y-4">
-                       <div class="flex items-center justify-between text-[11px] py-1">
-    <div class="flex items-center gap-3">
-        <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" 
-             class="w-6 h-6 rounded-full object-cover shrink-0" 
-             alt="Deacon Smith">
-        <span class="font-medium">Deacon Smith</span>
-    </div>
-    <span class="text-muted opacity-70">Score 71/100</span>
-    <button class="bg-[#f5c362]/10 text-[#f5c362] px-3 py-1 rounded text-[10px] font-bold hover:bg-[#f5c362]/20 transition-colors">
-        View Details
-    </button>
-</div>
-<div class="flex items-center justify-between text-[11px] py-1">
-    <div class="flex items-center gap-3">
-        <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png" 
-             class="w-6 h-6 rounded-full object-cover shrink-0" 
-             alt="Alex Blackmore">
-        <span class="font-medium">Alex Blackmore</span>
-    </div>
-    <span class="text-muted opacity-70">Score 71/100</span>
-    <button class="bg-[#f5c362]/10 text-[#f5c362] px-3 py-1 rounded text-[10px] font-bold hover:bg-[#f5c362]/20 transition-colors">
-        View Details </button>
-</div>
+        <!-- duplicate rows as needed -->
 
-<div class="flex items-center justify-between text-[11px] py-1">
-    <div class="flex items-center gap-3">
-        <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png" 
-             class="w-6 h-6 rounded-full object-cover shrink-0" 
-             alt="Nadine Eckhard">
-        <span class="font-medium">Nadine Eckhard</span>
+      
+
+      
+      </div>
+
     </div>
-    <span class="text-muted opacity-70">Score 71/100</span>
-    <button class="bg-[#f5c362]/10 text-[#f5c362] px-3 py-1 rounded text-[10px] font-bold hover:bg-[#f5c362]/20 transition-colors">
-        View Details </button>
+
+  </div>
 </div>
 
-                        <div class="flex items-center justify-between text-[11px] py-1">
-    <div class="flex items-center gap-3">
-        <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" 
-             class="w-6 h-6 rounded-full object-cover shrink-0" 
-             alt="Deacon Smith">
-        <span class="font-medium">Deacon Smith</span>
-    </div>
-    <span class="text-muted opacity-70">Score 71/100</span>
-    <button class="bg-[#f5c362]/10 text-[#f5c362] px-3 py-1 rounded text-[10px] font-bold hover:bg-[#f5c362]/20 transition-colors">
-        View Details </button>
-</div>
-
-                         <div class="flex items-center justify-between text-[11px] py-1">
-    <div class="flex items-center gap-3">
-        <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png" 
-             class="w-6 h-6 rounded-full object-cover shrink-0" 
-             alt="Alex Blackmore">
-        <span class="font-medium">Alex Blackmore</span>
-    </div>
-    <span class="text-muted opacity-70">Score 71/100</span>
-    <button class="bg-[#f5c362]/10 text-[#f5c362] px-3 py-1 rounded text-[10px] font-bold hover:bg-[#f5c362]/20 transition-colors">
-        View Details </button>
-</div>
-
-                         <div class="flex items-center justify-between text-[11px] py-1">
-    <div class="flex items-center gap-3">
-        <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png" 
-             class="w-6 h-6 rounded-full object-cover shrink-0" 
-             alt="Nadine Eckhard">
-        <span class="font-medium">Nadine Eckhard</span>
-    </div>
-    <span class="text-muted opacity-70">Score 71/100</span>
-    <button class="bg-[#f5c362]/10 text-[#f5c362] px-3 py-1 rounded text-[10px] font-bold hover:bg-[#f5c362]/20 transition-colors">
-        View Details </button>
-</div>
-
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 mt-12">
-                        <button class="btn-orange py-3 rounded-lg text-[10px] font-bold uppercase">Add New Member</button>
-                        <button class="border border-gray py-3 rounded-lg text-[10px] font-bold uppercase">Export User Data</button>
-                    </div>
-                </div>
-            </div>
-
-            <div>
+            <div class="mt-10">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-bold">Top Research Theories</h2>
-                    <button class="text-[10px] text-muted uppercase font-bold hover:text-white">View All Papers</button>
+                    
+                    <button class="text-[15px] text-muted  font-bold hover:text-white">View All Papers</button>
+                    
                 </div>
-                <div class="grid grid-cols-3 gap-6 items-start">
-                     <div class="flex flex-col space-y-4 group cursor-pointer">
-        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]"> <img src="assets/empathy.JPG" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                 alt="AI Empathy">
-        </div>
-        <div class="flex flex-col flex-grow">
-            <h4 class="text-xs font-bold leading-tight min-h-[32px]">
-                Blending AI with Empathy: How Friendcovery is Redefining Wellness Support
-            </h4>
-            <button class="text-[10px] text-blue-400 font-bold uppercase underline mt-3 self-start">
-                View Details
-            </button>
-        </div>
-    </div>
+      <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
 
-    <div class="flex flex-col space-y-4 group cursor-pointer">
-        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-            <img src="assets/healthier.JPG" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                 alt="Connection">
-        </div>
-        <div class="flex flex-col flex-grow">
-            <h4 class="text-xs font-bold leading-tight min-h-[32px]">
-                From Isolation to Connection: Building a Healthier You with Friendcovery
-            </h4>
-            <button class="text-[10px] text-blue-400 font-bold uppercase underline mt-3 self-start">
-                View Details
-            </button>
-        </div>
-    </div>
-
-    <div class="flex flex-col space-y-4 group cursor-pointer">
-        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-            <img src="assets/Welliness.JPG" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                 alt="Wellness"></div>
-        <div class="flex flex-col flex-grow">
-            <h4 class="text-xs font-bold leading-tight min-h-[32px]">
-                Why Whole-Person Wellness Matters—And How Friendcovery Delivers It Daily
-            </h4>
-            <button class="text-[10px] text-blue-400 font-bold uppercase underline mt-3 self-start">
-                View Details
-            </button>
-        </div>
-    </div>
-     <div class="flex flex-col space-y-4 group cursor-pointer">
+                <div class="grid grid-cols-3 gap-6 items-start pb-10">
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/empathy.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Theory">
+                        </div>
+                        <h4 class="text-xs font-bold leading-tight">Blending AI with Empathy: Redefining Wellness Support</h4>
+                        <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
+                    </div>
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/healthier.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Theory">
+                        </div>
+                        <h4 class="text-xs font-bold leading-tight">From Isolation to Connection: Building a Healthier You</h4>
+                        <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
+                    </div>
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/Welliness.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Theory">
+                        </div>
+                        <h4 class="text-xs font-bold leading-tight">Why Whole-Person Wellness Matters Daily</h4>
+                        <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
+                    
+                    </div>
+ <div class="flex flex-col space-y-4 group cursor-pointer">
         <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
             <img src="assets/support.JPG" 
                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -327,7 +407,7 @@
             <h4 class="text-xs font-bold leading-tight min-h-[32px]">
                 Blending AI with Empathy: How Friendcovery is Redefining Wellness Support
             </h4>
-            <button class="text-[10px] text-blue-400 font-bold uppercase underline mt-3 self-start">
+            <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
                 View Details
             </button>
         </div>
@@ -341,7 +421,7 @@
         <div class="flex flex-col flex-grow">
             <h4 class="text-xs font-bold leading-tight min-h-[32px]">
 From Isolation to Connection: Building a Healthier You with Friendcovery            </h4>
-            <button class="text-[10px] text-blue-400 font-bold uppercase underline mt-3 self-start">
+            <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
                 View Details
             </button>
         </div>
@@ -356,19 +436,15 @@ From Isolation to Connection: Building a Healthier You with Friendcovery        
             <h4 class="text-xs font-bold leading-tight min-h-[32px]">
                 Why Whole-Person Wellness Matters—And How Friendcovery Delivers It Daily
             </h4>
-            <button class="text-[10px] text-blue-400 font-bold uppercase underline mt-3 self-start">
+            <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
                 View Details
             </button>
         </div>
+                </div>
+            </div>
+            
+        </main>
     </div>
 
-</div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
