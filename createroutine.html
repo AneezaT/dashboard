@@ -17,6 +17,15 @@
             display: none;
         }
 
+        #routineOverlay::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #routineOverlay::-webkit-scrollbar-thumb {
+            background: #2d2d3d;
+            border-radius: 3px;
+        }
+
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -33,6 +42,10 @@
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #2d2d3d;
             border-radius: 10px;
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
@@ -121,576 +134,592 @@
 
         <main class="relative" id="mainSection">
 
-        <div class="flex-1 py-6 overflow-y-auto h-[calc(100vh-55px)] custom-scrollbar">
+            <div class="flex-1 py-6 overflow-y-auto h-[calc(100vh-55px)] custom-scrollbar">
 
-            <div class="flex gap-4 mb-6">
-                <div
-                    class="flex-1 min-h-[220px] rounded-[4px] border border-[#2d2d3d] relative overflow-hidden flex flex-col justify-center p-8
+                <div class="flex gap-4 mb-6">
+                    <div
+                        class="flex-1 min-h-[220px] rounded-[4px] border border-[#2d2d3d] relative overflow-hidden flex flex-col justify-center p-8
                 bg-[#12121c] 
                 bg-[linear-gradient(105deg,_#12121c_0%,_#1a1a2e_50%,_#12121c_100%)]
                 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_20%_30%,#31315a_0%,transparent_60%)] before:opacity-70
                 after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_90%_50%,#4a306d_0%,transparent_50%)] after:opacity-40">
 
-                    <div class="relative z-20">
-                        <div class="flex items-center mb-5">
-                            <div class="flex -space-x-2.5">
-                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
-                                    src="https://i.pravatar.cc/100?u=8" alt="u1">
-                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
-                                    src="https://i.pravatar.cc/100?u=12" alt="u2">
-                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
-                                    src="https://i.pravatar.cc/100?u=25" alt="u3">
-                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
-                                    src="https://i.pravatar.cc/100?u=33" alt="u4">
-                                <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
-                                    src="https://i.pravatar.cc/100?u=44" alt="u5">
+                        <div class="relative z-20">
+                            <div class="flex items-center mb-5">
+                                <div class="flex -space-x-2.5">
+                                    <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
+                                        src="https://i.pravatar.cc/100?u=8" alt="u1">
+                                    <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
+                                        src="https://i.pravatar.cc/100?u=12" alt="u2">
+                                    <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
+                                        src="https://i.pravatar.cc/100?u=25" alt="u3">
+                                    <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
+                                        src="https://i.pravatar.cc/100?u=33" alt="u4">
+                                    <img class="h-8 w-8 rounded-full border-2 border-[#1e1e3d] object-cover"
+                                        src="https://i.pravatar.cc/100?u=44" alt="u5">
+                                </div>
                             </div>
+                            <div class="inline-block mb-1">
+                                <span
+                                    class="text-[#FFD972] text-[12px] font-bold tracking-tight border-b border-[#f5c362]/40 pb-0.5">50+
+                                    Members</span>
+                            </div>
+                            <h1 class="text-white text-[28px] font-bold tracking-tight leading-tight mt-2 mb-3">Mayo
+                                Clinic
+                                – Rochester, Minnesota</h1>
+                            <p class="text-white text-[13px] leading-relaxed max-w-[620px] font-medium opacity-90">
+                                Choose the type of support that fits your comfort and needs. Whether you prefer to talk,
+                                type, or see someone face-to-face — we're here for you.
+                            </p>
                         </div>
-                        <div class="inline-block mb-1">
-                            <span
-                                class="text-[#FFD972] text-[12px] font-bold tracking-tight border-b border-[#f5c362]/40 pb-0.5">50+
-                                Members</span>
-                        </div>
-                        <h1 class="text-white text-[28px] font-bold tracking-tight leading-tight mt-2 mb-3">Mayo Clinic
-                            – Rochester, Minnesota</h1>
-                        <p class="text-white text-[13px] leading-relaxed max-w-[620px] font-medium opacity-90">
-                            Choose the type of support that fits your comfort and needs. Whether you prefer to talk,
-                            type, or see someone face-to-face — we're here for you.
-                        </p>
                     </div>
-                </div>
 
-                <div class="relative w-[280px] shrink-0">
-                    <div
-                        class="relative bg-[#12121c] border border-[#2d2d3d] rounded-[10px] p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)] h-full overflow-hidden">
+                    <div class="relative w-[280px] shrink-0">
                         <div
-                            class="absolute top-[52px] -left-[18px] w-8 h-8 bg-[#0f0f17] rounded-full border border-[#2d2d3d] z-20 shadow-[inset_-2px_0_5px_rgba(0,0,0,0.5)]">
-                        </div>
-                        <div
-                            class="absolute top-[52px] -right-[18px] w-8 h-8 bg-[#0f0f17] rounded-full border border-[#2d2d3d] z-20 shadow-[inset_2px_0_5px_rgba(0,0,0,0.5)]">
-                        </div>
-                        <div class="flex justify-between items-center mb-4 relative z-10">
-                            <h3 class="text-white text-[16px] font-semibold tracking-tight">Your Current Plan</h3>
+                            class="relative bg-[#12121c] border border-[#2d2d3d] rounded-[10px] p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)] h-full overflow-hidden">
                             <div
-                                class="w-8 h-8 rounded-[6px] border border-[#2d2d3d] bg-[#1a1a29] flex items-center justify-center">
-                                <img src="assets/crown_3550612 1.png" alt="Crown" class="w-7 h-7">
+                                class="absolute top-[52px] -left-[18px] w-8 h-8 bg-[#0f0f17] rounded-full border border-[#2d2d3d] z-20 shadow-[inset_-2px_0_5px_rgba(0,0,0,0.5)]">
                             </div>
-                        </div>
-                        <div class="relative py-2 px-1">
-                            <div class="border-t border-dashed border-[#2d2d3d] w-full opacity-50"></div>
-                        </div>
-                        <div class="mt-4 relative z-10">
-                            <div class="flex justify-between items-baseline mb-2">
-                                <h2 class="text-[#FFD972] text-[20px] font-bold tracking-tight">Starter Basic</h2>
-                                <span class="text-white text-[18px] font-bold tracking-tighter">$10.20</span>
+                            <div
+                                class="absolute top-[52px] -right-[18px] w-8 h-8 bg-[#0f0f17] rounded-full border border-[#2d2d3d] z-20 shadow-[inset_2px_0_5px_rgba(0,0,0,0.5)]">
                             </div>
-                            <p class="text-[white] text-[11px] leading-relaxed mb-6 font-medium">Lorem Ipsum is simply
-                                dummy text of the printing and typesetting industry.</p>
-                            <button
-                                class="text-white text-[13px] font-bold underline decoration-1 underline-offset-4 hover:text-[#FFD972] transition-all">Update
-                                Plan</button>
+                            <div class="flex justify-between items-center mb-4 relative z-10">
+                                <h3 class="text-white text-[16px] font-semibold tracking-tight">Your Current Plan</h3>
+                                <div
+                                    class="w-8 h-8 rounded-[6px] border border-[#2d2d3d] bg-[#1a1a29] flex items-center justify-center">
+                                    <img src="assets/crown_3550612 1.png" alt="Crown" class="w-7 h-7">
+                                </div>
+                            </div>
+                            <div class="relative py-2 px-1">
+                                <div class="border-t border-dashed border-[#2d2d3d] w-full opacity-50"></div>
+                            </div>
+                            <div class="mt-4 relative z-10">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h2 class="text-[#FFD972] text-[20px] font-bold tracking-tight">Starter Basic</h2>
+                                    <span class="text-white text-[18px] font-bold tracking-tighter">$10.20</span>
+                                </div>
+                                <p class="text-[white] text-[11px] leading-relaxed mb-6 font-medium">Lorem Ipsum is
+                                    simply
+                                    dummy text of the printing and typesetting industry.</p>
+                                <button
+                                    class="text-white text-[13px] font-bold underline decoration-1 underline-offset-4 hover:text-[#FFD972] transition-all">Update
+                                    Plan</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- PAGE WRAPPER -->
-            <div class="w-full min-h-screen bg-[#0e0f1a] px-6 py-8">
+                <!-- PAGE WRAPPER -->
+                <div class="w-full min-h-screen bg-[#0e0f1a] px-6 py-8">
 
-                <!-- ================= TOP 3 CARDS ================= -->
-                <div class="grid grid-cols-3 gap-4 mb-10 w-full">
+                    <!-- ================= TOP 3 CARDS ================= -->
+                    <div class="grid grid-cols-3 gap-4 mb-10 w-full">
 
-                    <div class="bg-[#5c7cfa] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
-                        <div>
-                            <div class="w-10 h-10 mb-2">
-                                <img src="assets/Group 346.png" alt="Voice">
+                        <div
+                            class="bg-[#5c7cfa] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
+                            <div>
+                                <div class="w-10 h-10 mb-2">
+                                    <img src="assets/Group 346.png" alt="Voice">
+                                </div>
+                                <h3 class="text-white text-[18px] font-bold">Voice Chat</h3>
                             </div>
-                            <h3 class="text-white text-[18px] font-bold">Voice Chat</h3>
+                            <p class="text-white/90 text-[12px] leading-relaxed">
+                                Speak with a wellness coach or AI assistant in real time to share what's on your mind.
+                            </p>
                         </div>
-                        <p class="text-white/90 text-[12px] leading-relaxed">
-                            Speak with a wellness coach or AI assistant in real time to share what's on your mind.
-                        </p>
+
+                        <div
+                            class="bg-[#d66a52] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
+                            <div>
+                                <div class="w-10 h-10 mb-2">
+                                    <img src="assets/Group 344.png" alt="Text">
+                                </div>
+                                <h3 class="text-white text-[18px] font-bold">Text Chat</h3>
+                            </div>
+                            <p class="text-white/90 text-[12px] leading-relaxed">
+                                Start a secure conversation with a therapist, health advisor, or support AI.
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-[#f5c362] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
+                            <div>
+                                <div class="w-10 h-10 mb-2">
+                                    <img src="assets/Group 613.png" alt="Video">
+                                </div>
+                                <h3 class="text-black text-[18px] font-bold">Video Call</h3>
+                            </div>
+                            <p class="text-black/80 text-[12px] leading-relaxed font-medium">
+                                Connect face-to-face with licensed professionals for a personal experience.
+                            </p>
+                        </div>
+
                     </div>
+                    <hr class="border-t-2 border-dotted border-light black my-9">
 
-                    <div class="bg-[#d66a52] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
-                        <div>
-                            <div class="w-10 h-10 mb-2">
-                                <img src="assets/Group 344.png" alt="Text">
-                            </div>
-                            <h3 class="text-white text-[18px] font-bold">Text Chat</h3>
-                        </div>
-                        <p class="text-white/90 text-[12px] leading-relaxed">
-                            Start a secure conversation with a therapist, health advisor, or support AI.
-                        </p>
-                    </div>
+                    <!-- ================= MAIN 2 CARDS ================= -->
+                    <div class="grid grid-cols-2 gap-8 w-full">
 
-                    <div class="bg-[#f5c362] p-6 rounded-[6px] min-h-[160px] flex flex-col justify-between shadow-lg">
-                        <div>
-                            <div class="w-10 h-10 mb-2">
-                                <img src="assets/Group 613.png" alt="Video">
-                            </div>
-                            <h3 class="text-black text-[18px] font-bold">Video Call</h3>
-                        </div>
-                        <p class="text-black/80 text-[12px] leading-relaxed font-medium">
-                            Connect face-to-face with licensed professionals for a personal experience.
-                        </p>
-                    </div>
+                        <!-- LEFT CARD -->
+                        <div
+                            class="bg-gradient-to-b from-[#141526] to-[#0f1020] border border-white/10 rounded-xl p-8 min-h-[700px] flex flex-col">
 
-                </div>
-                <hr class="border-t-2 border-dotted border-light black my-9">
+                            <h2 class="text-white text-[22px] font-semibold mb-3">
+                                Daily Routine
+                            </h2>
 
-                <!-- ================= MAIN 2 CARDS ================= -->
-                <div class="grid grid-cols-2 gap-8 w-full">
+                            <div class="w-full h-[1px] bg-gradient-to-r from-white/20 to-transparent mb-5"></div>
 
-                    <!-- LEFT CARD -->
-                    <div
-                        class="bg-gradient-to-b from-[#141526] to-[#0f1020] border border-white/10 rounded-xl p-8 min-h-[700px] flex flex-col">
+                            <p class="text-[#a1a3c7] text-[14px] mb-8">
+                                Lorem Ipsum is simply dummy text
+                            </p>
 
-                        <h2 class="text-white text-[22px] font-semibold mb-3">
-                            Daily Routine
-                        </h2>
+                            <div class="space-y-4 flex-grow">
 
-                        <div class="w-full h-[1px] bg-gradient-to-r from-white/20 to-transparent mb-5"></div>
-
-                        <p class="text-[#a1a3c7] text-[14px] mb-8">
-                            Lorem Ipsum is simply dummy text
-                        </p>
-
-                        <div class="space-y-4 flex-grow">
-
-                            <div class="space-y-4">
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
-                                        <span class="text-white text-[15px]">Outing & Medicine time</span>
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
-                                            <div
-                                                class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
-                                                ✓</div>
+                                <div class="space-y-4">
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
+                                            <span class="text-white text-[15px]">Outing & Medicine time</span>
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
+                                                <div
+                                                    class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
+                                                    ✓</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end gap-2">
+                                            <span
+                                                class="bg-[#5c7cfa] text-white text-[11px] px-3 py-1 rounded">Provider</span>
+                                            <button
+                                                class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
+                                                Complete</button>
                                         </div>
                                     </div>
-                                    <div class="flex justify-end gap-2">
-                                        <span
-                                            class="bg-[#5c7cfa] text-white text-[11px] px-3 py-1 rounded">Provider</span>
-                                        <button
-                                            class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
-                                            Complete</button>
+
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
+                                            <span class="text-white text-[15px]">Outing & Medicine time</span>
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
+                                                <div
+                                                    class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
+                                                    ✓</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end gap-2">
+                                            <span
+                                                class="bg-[#f5c362] text-black text-[11px] px-3 py-1 rounded">Family</span>
+                                            <button
+                                                class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
+                                                Complete</button>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
+                                            <span class="text-white text-[15px]">Outing & Medicine time</span>
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
+                                                <div
+                                                    class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
+                                                    ✓</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end gap-2">
+                                            <span
+                                                class="bg-[#5c7cfa] text-white text-[11px] px-3 py-1 rounded">Provider</span>
+                                            <button
+                                                class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
+                                                Complete</button>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
+                                            <span class="text-white text-[15px]">Outing & Medicine time</span>
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
+                                                <div
+                                                    class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
+                                                    ✓</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end gap-2">
+                                            <span
+                                                class="bg-[#d66a52] text-white text-[11px] px-3 py-1 rounded">own</span>
+                                            <button
+                                                class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
+                                                Complete</button>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
-                                        <span class="text-white text-[15px]">Outing & Medicine time</span>
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
-                                            <div
-                                                class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
-                                                ✓</div>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end gap-2">
-                                        <span
-                                            class="bg-[#f5c362] text-black text-[11px] px-3 py-1 rounded">Family</span>
-                                        <button
-                                            class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
-                                            Complete</button>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
-                                        <span class="text-white text-[15px]">Outing & Medicine time</span>
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
-                                            <div
-                                                class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
-                                                ✓</div>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end gap-2">
-                                        <span
-                                            class="bg-[#5c7cfa] text-white text-[11px] px-3 py-1 rounded">Provider</span>
-                                        <button
-                                            class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
-                                            Complete</button>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
-                                        <span class="text-white text-[15px]">Outing & Medicine time</span>
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-[#a1a3c7] text-[13px]">⏰ 12:20 PM</span>
-                                            <div
-                                                class="w-5 h-5 bg-[#149403] rounded-full flex items-center justify-center text-[10px]">
-                                                ✓</div>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end gap-2">
-                                        <span class="bg-[#d66a52] text-white text-[11px] px-3 py-1 rounded">own</span>
-                                        <button
-                                            class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
-                                            Complete</button>
-                                    </div>
-                                </div>
+
+
+
                             </div>
 
 
-
-
-                        </div>
-
-
-                        <div class="px-10">
-                            <button onclick="openRoutineModal()" class="bg-[#d66a52] text-white py-3 px-6 rounded">
-                                Create Routine
-                            </button>
-
-
-                            <div class="space-y-10 mt-10">
-                            </div>
-                        </div>
-
-                        <div id="routineOverlay"
-     class="absolute inset-0 z-[50] hidden flex items-center justify-center">
-
-                            <!-- background -->
-                            <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="closeRoutineModal()">
-                            </div>
-
-                            <!-- modal -->
-                            <div class="relative z-[10000]
-              w-full max-w-[650px]
-              max-h-[90vh]
-              overflow-y-auto
-              
-              p-10 rounded-lg custom-scrollbar">
-
-                                <button onclick="closeRoutineModal()"
-                                    class="absolute top-4 right-4 w-8 h-8  rounded-full">
-                                    ✕
+                            <div class="px-10">
+                                <button onclick="openRoutineModal()" class="bg-[#d66a52] text-white py-3 px-6 rounded">
+                                    Create Routine
                                 </button>
 
-                                <h2 class="text-3xl font-bold mb-2">Add Daily Routine</h2>
-                                <p class="text-white/60 mb-6">Lorem Ipsum is simply dummy text.</p>
 
-                                <!-- ✅ FORM START -->
-                                <div class="space-y-6">
+                                <div class="space-y-10 mt-10">
+                                </div>
+                            </div>
 
-                                    <div class="space-y-1">
-                                        <label class="text-[12px] text-white/40 font-medium  tracking-wider">Write Title
-                                            here</label><span
-                                            class=" ml-5px opacity-40 cursor-pointer hover:opacity-100 transition-opacity">
-                                            <img src="assets/Edit Square.png" alt="edit" ml-[8px] class="w-4 h-4">
-                                        </span>
-                                        <div class="flex items-center gap-2 ">
-                                            <input type="text" value="Outing & Medicine time"
-                                                class="bg-transparent w-full outline-none text-[18px] font-semibold text-white">
+                            <div id="routineOverlay"
+                                class=" overflow-y-auto absolute inset-0 z-[50] hidden flex items-start justify-start py-10 px-10 bg-[#1f1f2c]/90">
 
+                                <!-- background -->
+                                <div class="absolute inset-0" onclick="closeRoutineModal()"></div>
+
+                                <!-- modal -->
+                                <div class="relative z-[10000] w-[550px]
+             text-white">
+
+
+                                    <button onclick="closeRoutineModal()"
+                                        class="absolute top-4 right-4 w-8 h-8 border border-white/30 rounded-full">
+                                        ✕
+                                    </button>
+
+                                    <h2 class="text-3xl font-bold mb-2">Add Daily Routine</h2>
+                                    <p class="text-white/60 mb-6">Lorem Ipsum is simply dummy text.</p>
+
+                                    <!-- ✅ FORM START -->
+                                    <div class="space-y-6">
+
+                                        <div class="space-y-1">
+                                            <label class="text-[12px] text-white/40 font-medium  tracking-wider">Write
+                                                Title
+                                                here</label><span
+                                                class=" ml-5px opacity-40 cursor-pointer hover:opacity-100 transition-opacity">
+                                                <img src="assets/Edit Square.png" alt="edit" ml-[8px] class="w-4 h-4">
+                                            </span>
+                                            <div class="flex items-center gap-2 ">
+                                                <input type="text" value="Outing & Medicine time"
+                                                    class="bg-transparent w-full outline-none text-[18px] font-semibold text-white">
+
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="space-y-2">
-                                        <label class="text-[14px] font-semibold text-white">Enter User ID</label>
-                                        <div
-                                            class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full border-white/10 rounded-[5px] flex items-center px-4 py-3">
-                                            <input type="text" placeholder="enter user id"
-                                                class="bg-transparent w-full outline-none text-sm text-white placeholder:text-white">
-                                            <button
-                                                class="bg-[#ffd972] text-black text-[10px] font-bold px-3 py-1.5 rounded-[3px] ml-2 shrink-0">For
-                                                All Users</button>
+                                        <div class="space-y-2">
+                                            <label class="text-[14px] font-semibold text-white">Enter User ID</label>
+                                            <div
+                                                class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full border-white/10 rounded-[5px] flex items-center px-4 py-3">
+                                                <input type="text" placeholder="enter user id"
+                                                    class="bg-transparent w-full outline-none text-sm text-white placeholder:text-white">
+                                                <button
+                                                    class="bg-[#ffd972] text-black text-[10px] font-bold px-3 py-1.5 rounded-[3px] ml-2 shrink-0">For
+                                                    All Users</button>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="space-y-2">
-                                        <label class="text-[14px] font-semibold text-white">Set Your Time</label>
-                                        <div
-                                            class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full border border-white/10 rounded-[5px] p-5 flex justify-between items-center">
-                                            <span class="text-white text-sm">Set Reminder Time</span>
-                                            <div class="flex items-baseline gap-2">
-                                                <span
-                                                    class="text-[48px] font-bold leading-none text-white tracking-tighter">08:30</span>
-                                                <div
-                                                    class="flex flex-col text-[12px] font-bold leading-tight uppercase">
-                                                    <span class="text-white/20">pm</span>
-                                                    <span class="text-white">am</span>
+                                        <div class="space-y-2">
+                                            <label class="text-[14px] font-semibold text-white">Set Your Time</label>
+                                            <div
+                                                class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full border border-white/10 rounded-[5px] p-5 flex justify-between items-center">
+                                                <span class="text-white text-sm">Set Reminder Time</span>
+                                                <div class="flex items-baseline gap-2">
+                                                    <span
+                                                        class="text-[48px] font-bold leading-none text-white tracking-tighter">08:30</span>
+                                                    <div
+                                                        class="flex flex-col text-[12px] font-bold leading-tight uppercase">
+                                                        <span class="text-white/20">pm</span>
+                                                        <span class="text-white">am</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="flex items-center gap-3">
-                                        <label class="text-[16px] font-semibold text-white shrink-0">Set Day</label>
+                                        <div class="flex items-center gap-3">
+                                            <label class="text-[16px] font-semibold text-white shrink-0">Set Day</label>
 
-                                        <div class="relative w-32">
-                                            <select
-                                                class="bg-black/40 border border-white/20 rounded-[5px] w-full p-2 text-xs appearance-none outline-none text-white pr-6">
-                                                <option>Custom</option>
-                                            </select>
-                                            <span
-                                                class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white/40 pointer-events-none">▼</span>
+                                            <div class="relative w-32">
+                                                <select
+                                                    class="bg-black/40 border border-white/20 rounded-[5px] w-full p-2 text-xs appearance-none outline-none text-white pr-6">
+                                                    <option>Custom</option>
+                                                </select>
+                                                <span
+                                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white/40 pointer-events-none">▼</span>
+                                            </div>
+
+                                            <div class="relative w-32">
+                                                <select
+                                                    class="bg-[#d66a52] rounded-[5px] w-full p-2 text-xs appearance-none outline-none font-bold text-white pr-6 shadow-lg shadow-[#d66a52]/20">
+                                                    <option>Repeat</option>
+                                                </select>
+                                                <span
+                                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white pointer-events-none">▼</span>
+                                            </div>
                                         </div>
 
-                                        <div class="relative w-32">
-                                            <select
-                                                class="bg-[#d66a52] rounded-[5px] w-full p-2 text-xs appearance-none outline-none font-bold text-white pr-6 shadow-lg shadow-[#d66a52]/20">
-                                                <option>Repeat</option>
-                                            </select>
-                                            <span
-                                                class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white pointer-events-none">▼</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-white rounded-[5px] p-4 flex justify-between items-center w-full">
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">S</span>
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center rounded-full text-[13px] font-bold bg-[#5c7cfa] text-white shadow-md shadow-[#5c7cfa]/40">M</span>
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center rounded-full text-[13px] font-bold bg-[#5c7cfa] text-white shadow-md shadow-[#5c7cfa]/40">T</span>
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">W</span>
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">T</span>
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">F</span>
-                                        <span
-                                            class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">S</span>
-                                    </div>
-
-                                    <div class="space-y-2">
-                                        <label class="text-[15px] font-semibold text-white">Add Special Note</label>
                                         <div
-                                            class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full">
-                                            <textarea placeholder="Add Special note"
-                                                class="w-full bg-transparent h-32 outline-none resize-none text-sm text-white placeholder:text-white"></textarea>
+                                            class="bg-white rounded-[5px] p-4 flex justify-between items-center w-full">
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">S</span>
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center rounded-full text-[13px] font-bold bg-[#5c7cfa] text-white shadow-md shadow-[#5c7cfa]/40">M</span>
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center rounded-full text-[13px] font-bold bg-[#5c7cfa] text-white shadow-md shadow-[#5c7cfa]/40">T</span>
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">W</span>
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">T</span>
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">F</span>
+                                            <span
+                                                class="w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20">S</span>
                                         </div>
-                                    </div>
 
-                                    <div class="flex justify-start">
-                                        <button
-                                            class="bg-[#d66a52] hover:bg-[#c05a42] text-white font-bold py-3.5 px-12 rounded-[5px] text-[16px] shadow-xl shadow-[#d66a52]/30 transition-all active:scale-95">
-                                            Add Routine
-                                        </button>
+                                        <div class="space-y-2">
+                                            <label class="text-[15px] font-semibold text-white">Add Special Note</label>
+                                            <div
+                                                class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full">
+                                                <textarea placeholder="Add Special note"
+                                                    class="w-full bg-transparent h-32 outline-none resize-none text-sm text-white placeholder:text-white"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex justify-start">
+                                            <button
+                                                class="bg-[#d66a52] hover:bg-[#c05a42] text-white font-bold py-3.5 px-12 rounded-[5px] text-[16px] shadow-xl shadow-[#d66a52]/30 transition-all active:scale-95">
+                                                Add Routine
+                                            </button>
+                                        </div>
+
                                     </div>
+                                    <!-- ✅ FORM END -->
 
                                 </div>
-                                <!-- ✅ FORM END -->
-
                             </div>
+
+
+
                         </div>
+                        <script>
+                            function openRoutineModal() {
+                                document.getElementById('routineOverlay').classList.remove('hidden');
+                                document.body.style.overflow = 'hidden'; // freeze background
+                            }
 
+                            function closeRoutineModal() {
+                                document.getElementById('routineOverlay').classList.add('hidden');
+                                document.body.style.overflow = ''; // restore scroll
+                            }
 
-
-                    </div>
-                    <script>
-                        function openRoutineModal() {
-                            document.getElementById('routineOverlay').classList.remove('hidden');
-                            document.body.style.overflow = 'hidden'; // freeze background
-                        }
-
-                        function closeRoutineModal() {
-                            document.getElementById('routineOverlay').classList.add('hidden');
-                            document.body.style.overflow = ''; // restore scroll
-                        }
-
-                    </script>
-                    <!-- RIGHT CARD -->
-                    <div class="bg-gradient-to-b from-[#2a2b3f] to-[#1b1c2e]
+                        </script>
+                        <!-- RIGHT CARD -->
+                        <div class="bg-gradient-to-b from-[#2a2b3f] to-[#1b1c2e]
                 border border-white/10 rounded-xl p-8 min-h-[720px]">
 
-                        <h2 class="text-white text-[22px] font-semibold mb-3">
-                            Patients
-                        </h2>
+                            <h2 class="text-white text-[22px] font-semibold mb-3">
+                                Patients
+                            </h2>
 
-                        <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
+                            <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
 
-                        <p class="text-[#a1a3c7] text-[14px] mb-8">
-                            Create and manage personalized care flows to keep patients engaged,
-                            informed, and supported every day.
-                        </p>
+                            <p class="text-[#a1a3c7] text-[14px] mb-8">
+                                Create and manage personalized care flows to keep patients engaged,
+                                informed, and supported every day.
+                            </p>
 
-                        <div class="space-y-6 mb-12">
+                            <div class="space-y-6 mb-12">
 
-                            <!-- REPEAT ROW -->
-                            <!-- ROW -->
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Deacon Smith</span>
+                                <!-- REPEAT ROW -->
+                                <!-- ROW -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Deacon Smith</span>
 
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Alex Blackmore</span>
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Nadine Eckhard</span>
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Deacon Smith</span>
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Alex Blackmore</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Nadine Eckhard</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Deacon Smith</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
 
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Alex Blackmore</span>
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Nadine Eckhard</span>
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Alex Blackmore</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Nadine Eckhard</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
 
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <span class="text-white font-medium">Deacon Smith</span>
-                                </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                <button class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
-                                    View Details </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <span class="text-white font-medium">Deacon Smith</span>
+                                    </div> <span class="text-[#a1a3c7]">Score 71/100</span>
+                                    <button
+                                        class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
+                                        View Details </button>
 
-                            </div>
+                                </div>
 
-                            <div class="flex gap-6">
-                                <button class="flex-1 bg-[#e06a52] hover:bg-[#cc5c46]
+                                <div class="flex gap-6">
+                                    <button class="flex-1 bg-[#e06a52] hover:bg-[#cc5c46]
                        text-white py-4 rounded-lg font-semibold">
-                                    Add New Member
-                                </button>
-                                <button class="flex-1 border border-white/40
+                                        Add New Member
+                                    </button>
+                                    <button class="flex-1 border border-white/40
                        text-white py-4 rounded-lg font-semibold">
-                                    Export User Data
-                                </button>
+                                        Export User Data
+                                    </button>
+                                </div>
+
+                                <!-- duplicate rows as needed -->
+
+
+
+
                             </div>
-
-                            <!-- duplicate rows as needed -->
-
-
-
 
                         </div>
 
                     </div>
+                </div>
+
+                <div class="mt-10"></div>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Top Research Theories</h2>
+
+                    <button class="text-[15px] text-muted  font-bold hover:text-white">View All Papers</button>
 
                 </div>
-            </div>
+                <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
 
-            <div class="mt-10"></div>
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold">Top Research Theories</h2>
-
-                <button class="text-[15px] text-muted  font-bold hover:text-white">View All Papers</button>
-
-            </div>
-            <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
-
-            <div class="grid grid-cols-3 gap-6 items-start pb-10">
-                <div class="flex flex-col space-y-4 group cursor-pointer">
-                    <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-                        <img src="assets/empathy.JPG"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Theory">
-                    </div>
-                    <h4 class="text-xs font-bold leading-tight">Blending AI with Empathy: Redefining Wellness Support
-                    </h4>
-                    <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
-                </div>
-                <div class="flex flex-col space-y-4 group cursor-pointer">
-                    <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-                        <img src="assets/healthier.JPG"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Theory">
-                    </div>
-                    <h4 class="text-xs font-bold leading-tight">From Isolation to Connection: Building a Healthier You
-                    </h4>
-                    <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
-                </div>
-                <div class="flex flex-col space-y-4 group cursor-pointer">
-                    <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-                        <img src="assets/Welliness.JPG"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Theory">
-                    </div>
-                    <h4 class="text-xs font-bold leading-tight">Why Whole-Person Wellness Matters Daily</h4>
-                    <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
-
-                </div>
-                <div class="flex flex-col space-y-4 group cursor-pointer">
-                    <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-                        <img src="assets/support.JPG"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            alt="Wellness">
-                    </div>
-                    <div class="flex flex-col flex-grow">
-                        <h4 class="text-xs font-bold leading-tight min-h-[32px]">
-                            Blending AI with Empathy: How Friendcovery is Redefining Wellness Support
+                <div class="grid grid-cols-3 gap-6 items-start pb-10">
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/empathy.JPG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                alt="Theory">
+                        </div>
+                        <h4 class="text-xs font-bold leading-tight">Blending AI with Empathy: Redefining Wellness
+                            Support
                         </h4>
-                        <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
-                            View Details
-                        </button>
+                        <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
                     </div>
-                </div>
-
-                <div class="flex flex-col space-y-4 group cursor-pointer">
-                    <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-                        <img src="assets/child.JPG"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            alt="Wellness">
-                    </div>
-                    <div class="flex flex-col flex-grow">
-                        <h4 class="text-xs font-bold leading-tight min-h-[32px]">
-                            From Isolation to Connection: Building a Healthier You with Friendcovery </h4>
-                        <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-
-                <div class="flex flex-col space-y-4 group cursor-pointer">
-                    <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
-                        <img src="assets/people.JPG"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            alt="Wellness">
-                    </div>
-                    <div class="flex flex-col flex-grow">
-                        <h4 class="text-xs font-bold leading-tight min-h-[32px]">
-                            Why Whole-Person Wellness Matters—And How Friendcovery Delivers It Daily
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/healthier.JPG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                alt="Theory">
+                        </div>
+                        <h4 class="text-xs font-bold leading-tight">From Isolation to Connection: Building a Healthier
+                            You
                         </h4>
-                        <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
-                            View Details
-                        </button>
+                        <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
+                    </div>
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/Welliness.JPG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                alt="Theory">
+                        </div>
+                        <h4 class="text-xs font-bold leading-tight">Why Whole-Person Wellness Matters Daily</h4>
+                        <button class="text-[10px] text-[#FFD972] font-bold  underline self-start">View Details</button>
+
+                    </div>
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/support.JPG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                alt="Wellness">
+                        </div>
+                        <div class="flex flex-col flex-grow">
+                            <h4 class="text-xs font-bold leading-tight min-h-[32px]">
+                                Blending AI with Empathy: How Friendcovery is Redefining Wellness Support
+                            </h4>
+                            <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/child.JPG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                alt="Wellness">
+                        </div>
+                        <div class="flex flex-col flex-grow">
+                            <h4 class="text-xs font-bold leading-tight min-h-[32px]">
+                                From Isolation to Connection: Building a Healthier You with Friendcovery </h4>
+                            <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col space-y-4 group cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl aspect-video bg-[#252535]">
+                            <img src="assets/people.JPG"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                alt="Wellness">
+                        </div>
+                        <div class="flex flex-col flex-grow">
+                            <h4 class="text-xs font-bold leading-tight min-h-[32px]">
+                                Why Whole-Person Wellness Matters—And How Friendcovery Delivers It Daily
+                            </h4>
+                            <button class="text-[10px] text-[#FFD972] font-bold  underline mt-3 self-start">
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
 
         </main>
