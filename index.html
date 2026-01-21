@@ -72,24 +72,67 @@
         <!-- SIDEBAR -->
         <aside
             class="w-[300px] border-r border-[#1e1e2d] h-[calc(100vh-55px)] flex flex-col p-3 gap-3 bg-[#12121c] overflow-y-auto no-scrollbar shrink-0">
-            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-3">
-                <div class="bg-[#3f3f51] text-white p-2 rounded-[4px] flex items-center gap-3 mb-4">
-                    <div class="grid grid-cols-2 gap-0.5">
-                        <div class="w-1.5 h-1.5 bg-[#d66a52] rounded-[1px]"></div>
-                        <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
-                        <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
-                        <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
-                    </div>
-                    <!-- Navigation Trigger for Home -->
-                    <span class="text-[13px] font-medium cursor-pointer" onclick="router.navigate('/')">Dashboard</span>
-                </div>
-                <div class="flex flex-col space-y-3.5 pl-9 text-[#9494b8] text-[12px]">
-                    <div class="hover:text-white cursor-pointer" onclick="router.navigate('/')">All Patients</div>
-                    <div class="hover:text-white cursor-pointer">Support Group</div>
-                    <div class="hover:text-white cursor-pointer">Articles / Papers</div>
-                    <div class="hover:text-white cursor-pointer">Price Plans</div>
-                </div>
-            </div>
+            <style>
+    /* Active state styling */
+    .menu-item.active {
+        background-color: #3f3f51 !important;
+        color: white !important;
+        border: 1px solid #2d2d3d; /* Jaisa dashboard ka border hai */
+    }
+</style>
+
+<div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-3">
+    <div id="nav-dashboard" 
+         class="menu-item active text-white p-2 rounded-[4px] flex items-center gap-3 mb-4 cursor-pointer" 
+         onclick="setActiveMenu(this, '/')">
+        <div class="grid grid-cols-2 gap-0.5">
+            <div class="w-1.5 h-1.5 bg-[#d66a52] rounded-[1px]"></div>
+            <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
+            <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
+            <div class="w-1.5 h-1.5 bg-white rounded-[1px]"></div>
+        </div>
+        <a href="index.html"><span class="text-[13px] font-medium">Dashboard</span></a>        
+    </div>
+
+    <div class="flex flex-col space-y-2 pl-2 text-[#9494b8] text-[12px]">
+        <div class="menu-item p-2 rounded-[4px] flex items-center gap-3 cursor-pointer hover:bg-[#3f3f51]/50 transition-all" 
+             onclick="setActiveMenu(this, '/all-patients');openPatientsModal()">
+             <span class="pl-7">All Patients</span>
+        </div>
+        
+        <div class="menu-item p-2 rounded-[4px] flex items-center gap-3 cursor-pointer hover:bg-[#3f3f51]/50 transition-all" 
+             onclick="setActiveMenu(this, '/support-group')">
+             <span class="pl-7">Support Group</span>
+        </div>
+
+        <div  class="menu-item p-2 rounded-[4px] flex items-center gap-3 cursor-pointer hover:bg-[#3f3f51]/50 transition-all" 
+             onclick="setActiveMenu(this, '/articles'); openArticalModal()">
+             <span class="pl-7">Articles / Papers</span>
+        </div>
+
+        <div class="menu-item p-2 rounded-[4px] flex items-center gap-3 cursor-pointer hover:bg-[#3f3f51]/50 transition-all" 
+             onclick="setActiveMenu(this, '/pricing'); openSubModal()">
+             <span  class="pl-7">Price Plans</span>
+        </div>
+    </div>
+</div>
+
+<script>
+function setActiveMenu(element, path) {
+    // 1. Sabhi menu items se 'active' class hatayen
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // 2. Clicked item par 'active' class lagayen
+    element.classList.add('active');
+
+    // 3. Router navigate call karein
+    if (typeof router !== 'undefined') {
+        router.navigate(path);
+    }
+}
+</script>
 
             <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-3">
                 <div class="flex items-center justify-between mb-3">
@@ -127,7 +170,7 @@
                             <span class="text-white text-[13px] font-bold">→ Schedule Meeting</span>
                         </div>
                         <p class="text-white/70 text-[9px] pl-4">Coordinate times, set objectives, and ensure seamless
-                            communication.</p>
+                         communication.</p>
                     </div>
                 </div>
             </div>
@@ -135,6 +178,137 @@
 
         <!-- MAIN CONTENT AREA -->
         <div class="flex-1 relative h-[calc(100vh-55px)]">
+            <!-- PAYMENT SUCCESS OVERLAY (Positioned relative to main content) -->
+            <div id="payOverlay"
+                 class="absolute inset-0 z-[100] hidden flex items-center justify-center bg-[#1f1f2c]/80 font-sans">
+
+                <div class="absolute inset-0" onclick="closepayModal()"></div>
+
+                <div class="relative z-[1000] bg-white w-[600px] h-[417px] rounded-lg shadow-2xl flex flex-col items-center justify-center p-8 text-center">
+
+                    <div class="relative mb-6">
+
+                        <div class="w-20 h-20 bg-[#7c9df8] rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <h2 class="text-[#2d2d2d] text-3xl font-bold mb-2">Payment Successful</h2>
+                    <p class="text-gray-500 text-sm mb-6">Your payment was processed successfully.</p>
+
+                    <h3 class="text-[#e27d60] text-4xl font-bold mb-10">Thank you!</h3>
+
+                    <button onclick="closepayModal()"
+                            class="w-[280px] bg-[#e27d60] hover:bg-[#d16c50] text-white py-3 rounded-md font-medium transition-colors shadow-md">
+                        Close
+                    </button>
+                </div>
+            </div>
+
+            <!-- OVERLAY CONTAINER (Positioned relative to main content) -->
+            <div id="routineOverlay"
+                 class="absolute inset-0 z-[50] hidden flex items-start justify-start py-10 px-10 bg-[#1f1f2c]/90 overflow-y-auto no-scrollbar">
+
+                <div class="absolute inset-0" onclick="closeRoutineModal()"></div>
+
+                <div class="relative z-[10000] w-[550px] text-white">
+                    <button onclick="closeRoutineModal()"
+                        class="absolute top-4 right-4 w-8 h-8 border border-white/30 rounded-full hover:bg-white/10">✕</button>
+
+                    <h2 class="text-3xl font-bold mb-2">Add Daily Routine</h2>
+                    <p class="text-white/60 mb-6">Create your schedule and manage tasks efficiently.</p>
+
+                    <div class="space-y-6">
+
+                        <div class="space-y-1">
+                            <label class="text-[12px] text-white/40 font-medium tracking-wider uppercase">Write Title here</label>
+                            <div class="flex items-center gap-2 border-b border-white/10 pb-1 focus-within:border-white/40">
+                                <input type="text" id="routineTitle" value="Outing & Medicine time"
+                                    class="bg-transparent w-full outline-none text-[18px] font-semibold text-white">
+                                <img src="assets/Edit Square.png" alt="edit" class="w-4 h-4 opacity-40">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[14px] font-semibold text-white">Enter User ID</label>
+                            <div class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full flex items-center">
+                                <input type="text" id="userIdInput" placeholder="enter user id"
+                                    class="bg-transparent w-full outline-none text-sm text-white placeholder:text-white/30">
+                                <button onclick="document.getElementById('userIdInput').value='ALL_USERS'"
+                                    class="bg-[#ffd972] hover:bg-[#ffcc41] text-black text-[10px] font-bold px-3 py-1.5 rounded-[3px] ml-2 shrink-0 transition-colors">
+                                    For All Users
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[14px] font-semibold text-white">Set Your Time</label>
+                            <div class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-5 flex justify-between items-center relative cursor-pointer"
+                                 onclick="document.getElementById('timeInput').showPicker()">
+                                <span class="text-white text-sm">Set Reminder Time</span>
+
+                                <div class="flex items-baseline gap-2">
+                                    <input type="time" id="timeInput" value="08:30"
+                                           onchange="updateTimeDisplay(this.value)"
+                                           class="absolute inset-0 opacity-0 cursor-pointer">
+                                    <span id="displayTime" class="text-[48px] font-bold leading-none text-white tracking-tighter">08:30</span>
+                                    <div class="flex flex-col text-[12px] font-bold leading-tight uppercase">
+                                        <span id="pmLabel" class="text-white/20">pm</span>
+                                        <span id="amLabel" class="text-white">am</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <label class="text-[16px] font-semibold text-white shrink-0">Set Day</label>
+                            <div class="relative w-32">
+                                <select class="bg-black/40 border border-white/20 rounded-[5px] w-full p-2 text-xs appearance-none outline-none text-white pr-6 cursor-pointer">
+                                    <option>Custom</option>
+                                    <option>Everyday</option>
+                                    <option>Weekends</option>
+                                </select>
+                                <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white/40 pointer-events-none">▼</span>
+                            </div>
+                            <div class="relative w-32">
+                                <select class="bg-[#d66a52] rounded-[5px] w-full p-2 text-xs appearance-none outline-none font-bold text-white pr-6 shadow-lg shadow-[#d66a52]/20 cursor-pointer">
+                                    <option>Repeat</option>
+                                    <option>Once</option>
+                                </select>
+                                <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white pointer-events-none">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-[5px] p-4 flex justify-between items-center w-full shadow-inner">
+                            <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">S</span>
+                            <span onclick="toggleDay(this)" class="day-circle active w-8 h-8 flex items-center justify-center text-[13px] font-bold text-white cursor-pointer rounded-full transition-all">M</span>
+                            <span onclick="toggleDay(this)" class="day-circle active w-8 h-8 flex items-center justify-center text-[13px] font-bold text-white cursor-pointer rounded-full transition-all">T</span>
+                            <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">W</span>
+                            <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">T</span>
+                            <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">F</span>
+                            <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">S</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[15px] font-semibold text-white">Add Special Note</label>
+                            <div class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full focus-within:border-white/30">
+                                <textarea placeholder="Add Special note"
+                                    class="w-full bg-transparent h-32 outline-none resize-none text-sm text-white placeholder:text-white/30"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-start">
+                            <button onclick="handleRoutineSubmit()"
+                                class="bg-[#d66a52] hover:bg-[#c05a42] text-white font-bold py-3.5 px-12 rounded-[5px] text-[16px] shadow-xl shadow-[#d66a52]/30 transition-all active:scale-95">
+                                Add Routine
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <main class="w-full h-full py-6 overflow-y-auto no-scrollbar">
 
                 <!-- Top Banner (Same for all pages) -->
@@ -199,9 +373,10 @@
                                 </div>
                                 <p class="text-[white] text-[11px] leading-relaxed mb-6 font-medium">Lorem Ipsum is
                                     simply dummy text of the printing and typesetting industry.</p>
-                                <button
-                                    class="text-white text-[13px] font-bold underline decoration-1 underline-offset-4 hover:text-[#FFD972] transition-all">Update
-                                    Plan</button>
+                                <button  onclick="openSubModal()"
+    class="text-white text-[13px] font-bold underline decoration-1 underline-offset-4 hover:text-[#FFD972] transition-all">
+    Update Plan
+</button>
                             </div>
                         </div>
                     </div>
@@ -421,7 +596,7 @@
                                                     Complete</button>
                                             </div>
                                         </div>
-                                         <div class="space-y-2">
+                                        <div class="space-y-2">
                                         <div
                                             class="bg-[#1a1b2e] border border-white/5 p-4 rounded-lg flex items-center justify-between">
                                             <span class="text-white text-[15px]">Outing & Medicine time</span>
@@ -432,17 +607,17 @@
                                                     ✓</div>
                                             </div>
                                         </div>
-                                        <div class="flex justify-end gap-2">
+                             <div class="flex justify-end gap-2">
                                             <span
                                                 class="bg-[#d66a52] text-white text-[11px] px-3 py-1 rounded">own</span>
                                             <button
                                                 class="border border-white/20 text-white text-[11px] px-3 py-1 rounded hover:bg-white/5">Mark
                                                 Complete</button>
                                         </div>
-                                    </div>
+                                   </div>
                                     </div>
                                 </div>
-                                <div class="px-10 mt-auto">
+                             <div class="px-10 mt-auto">
                                     <button onclick="openRoutineModal()"
                                         class="bg-[#d66a52] text-white py-3 px-6 rounded w-full">Create Routine</button>
                                 </div>
@@ -547,7 +722,8 @@
                     <div class="mt-10">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-xl font-bold">Top Research Theories</h2>
-                            <button class="text-[15px] text-muted font-bold hover:text-white">View All Papers</button>
+                            <button onclick="openArticalModal()"
+                            class="text-[15px] text-muted font-bold hover:text-white">View All Papers</button>
                         </div>
                         <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
                         <div class="grid grid-cols-3 gap-6 items-start pb-10">
@@ -636,107 +812,718 @@
     }
 </style>
 
-<div id="routineOverlay"
-     class="absolute inset-0 z-[50] hidden flex items-start justify-start py-10 px-10 bg-[#1f1f2c]/90 overflow-y-auto no-scrollbar">
+<div id="updateOverlay"
+     class="absolute inset-0 z-[50] hidden flex items-start justify-start py-10 px-10 bg-[#1f1f2c]/80 overflow-y-auto no-scrollbar">
     
-    <div class="absolute inset-0" onclick="closeRoutineModal()"></div>
+    <div class="absolute inset-0" onclick="closeSubModal()"></div>
 
-    <div class="relative z-[10000] w-[550px] text-white">
-        <button onclick="closeRoutineModal()"
-            class="absolute top-4 right-4 w-8 h-8 border border-white/30 rounded-full hover:bg-white/10">✕</button>
+    <div class="relative z-[10000] w-[550px] justify-center bg-[#474554] w-[750px] h-[451px] top-[100px] left-[150px] rounded-[5px] p-10 text-white shadow-2xl border border-radius-2 border-white/5">
+    
+    <button onclick="closeSubModal()" class="absolute top-6 right-6 w-10 h-10 border border-white/60 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors text-xl">✕</button>
+    
+    <div class="flex items-center gap-4 mb-6">
+        <div
+             class="w-63 h-63 rounded-[6px] border border-[#2d2d3d] bg-[blur] flex items-center justify-center">
+            <img src="assets/crown sub.png" alt="Crown" class="w-100 h-100">
+             </div>
+        <div>
+            <h2 class="text-3xl font-bold leading-tight">Subscription plan</h2>
+            <p class="text-[#4ade80] text-sm font-medium">Active</p>
+        </div>
+    </div>
+
+    <p class="text-white/80 text-[14px] leading-relaxed mb-8 max-w-[650px]">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+    </p>
+
+    <div class="flex gap-6 mb-10">
+        <div class="w-[140px]">
+            <div class="bg-[#5c6ba1] text-center py-2 rounded-[4px] mb-3 font-bold text-[16px]">
+                Start date
+            </div>
+            <div class="text-center text-white/90 text-[15px]">
+                12 / 03 / 2025
+            </div>
+        </div>
+
+        <div class="w-[140px]">
+            <div class="bg-[#8d5d5d] text-center py-2 rounded-[4px] mb-3 font-bold text-[16px]">
+                End date
+            </div>
+            <div class="text-center text-white/90 text-[15px]">
+                12 / 04 / 2025
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <button  onclick="openSubscriptionModal()" class="w-[260px] bg-[#d66a52] hover:bg-[#c05a44] text-white font-medium py-3 rounded-[4px] text-[15px] transition-all">
+            Update Subscription Plan
+        </button>
+        <button class="w-[220px] border border-white/60 hover:bg-white/5 text-white font-medium py-3 rounded-[4px] text-[15px] transition-all">
+            Cancel Subscription
+        </button>
+    </div>
+
+</div>
+</div>
+
+
+<div id="SubscriptionOverlay"
+     class="absolute inset-0 z-[50] hidden flex items-start justify-start py-10 px-10 bg-[#1f1f2c]/80 overflow-y-auto no-scrollbar">
+    
+    <div class="absolute inset-0" onclick="closeSubscriptionModal()"></div>
+
+   <div class="bg-[#1a1b26] min-h-screen py-20 px-4 font-sans text-white">
+    
+    <div class="text-center mb-16">
+        <h1 class="text-4xl font-semibold mb-4">Select your price plan as per your user limit</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto text-sm leading-relaxed">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8 max-w-7xl mx-auto">
         
-        <h2 class="text-3xl font-bold mb-2">Add Daily Routine</h2>
-        <p class="text-white/60 mb-6">Create your schedule and manage tasks efficiently.</p>
+        <div class="group relative bg-[#474554] w-full md:w-[350px] rounded-lg p-8 flex flex-col items-center border border-white/5 shadow-xl transition-all duration-300 hover:bg-[#5d83f1] hover:scale-105 cursor-pointer">
+            <h2 class="text-2xl font-medium mb-6">Starter Plan</h2>
+            <div class="text-center mb-8">
+                <span class="text-4xl font-bold">$150</span>
+                <span class="text-gray-400 group-hover:text-white/80">/ Year</span>
+            </div>
+            
+            <ul class="space-y-5 mb-10 text-sm text-gray-300 group-hover:text-white/95">
+                <li class="flex items-start gap-3">
+                     <img src="assets/crown.svg" alt="">
+                    <p>Outing & Medicine time added by facility provider</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>You have fewer than 20 doses remaining. Please restock or notify your provider.</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>Your facility provider has added new timings for outdoor activity and medication intake.</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>A meeting with your care provider has been scheduled for Tuesday at 3:00 PM.</p>
+                </li>
+            </ul>
+
+            <button onclick="openSubscribeModal()"
+            class="w-full bg-[#e27d60] group-hover:bg-white group-hover:text-[#5d83f1] text-white py-3 rounded-md font-medium transition-all duration-300 mt-auto">
+                Subscribe
+            </button>
+        </div>
+
+        <div class="group relative bg-[#474554] w-full md:w-[350px] rounded-lg p-8 flex flex-col items-center border border-white/5 shadow-xl transition-all duration-300 hover:bg-[#5d83f1] hover:scale-105 cursor-pointer">
+            <h2 class="text-2xl font-medium mb-6">Starter Plan</h2>
+            <div class="text-center mb-8">
+                <span class="text-4xl font-bold">$350</span>
+                <span class="text-gray-400 group-hover:text-white/80">/ Year</span>
+            </div>
+            
+            <ul class="space-y-5 mb-10 text-sm text-gray-300 group-hover:text-white/95">
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>Outing & Medicine time added by facility provider</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>You have fewer than 20 doses remaining. Please restock or notify your provider.</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>Your facility provider has added new timings for outdoor activity and medication intake.</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>A meeting with your care provider has been scheduled for Tuesday at 3:00 PM.</p>
+                </li>
+            </ul>
+
+            <button onclick="openSubscribeModal()"
+             class="w-full bg-[#e27d60] group-hover:bg-white group-hover:text-[#5d83f1] text-white py-3 rounded-md font-medium transition-all duration-300 mt-auto">
+                Subscribe
+            </button>
+        </div>
+
+        <div class="group relative bg-[#474554] w-full md:w-[350px] rounded-lg p-8 flex flex-col items-center border border-white/5 shadow-xl transition-all duration-300 hover:bg-[#5d83f1] hover:scale-105 cursor-pointer">
+            <h2 class="text-2xl font-medium mb-6">Starter Plan</h2>
+            <div class="text-center mb-8">
+                <span class="text-4xl font-bold">$250</span>
+                <span class="text-gray-400 group-hover:text-white/80">/ Year</span>
+            </div>
+            
+            <ul class="space-y-5 mb-10 text-sm text-gray-300 group-hover:text-white/95">
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>Outing & Medicine time added by facility provider</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>You have fewer than 20 doses remaining. Please restock or notify your provider.</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>Your facility provider has added new timings for outdoor activity and medication intake.</p>
+                </li>
+                <li class="flex items-start gap-3">
+ <img src="assets/crown.svg" alt="">
+                     <p>A meeting with your care provider has been scheduled for Tuesday at 3:00 PM.</p>
+                </li>
+            </ul>
+
+            <button onclick="openSubscribeModal()"
+             class="w-full bg-[#e27d60] group-hover:bg-white group-hover:text-[#5d83f1] text-white py-3 rounded-md font-medium transition-all duration-300 mt-auto">
+                Subscribe
+            </button>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<div id="PaymentOverlay"
+     class="absolute inset-0 z-[50] hidden flex items-start justify-start  bg-[#1a1b26] overflow-y-auto no-scrollbar">
+    
+    <div class="absolute inset-0" onclick="document.getElementById('PaymentOverlay').classList.add('hidden')"></div>
+
+<div class="relative bg-[#1a1b26] p-8 text-white font-sans flex flex-col"
+         style="width: 790px; left: 43px; opacity: 1; gap: 37px; transform: rotate(0deg);">        
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2">Make a Payment</h2>
+            <p class="text-gray-400 text-sm">Let's Create your Time Vault</p>
+        </div>
 
         <div class="space-y-6">
-
-            <div class="space-y-1">
-                <label class="text-[12px] text-white/40 font-medium tracking-wider uppercase">Write Title here</label>
-                <div class="flex items-center gap-2 border-b border-white/10 pb-1 focus-within:border-white/40">
-                    <input type="text" id="routineTitle" value="Outing & Medicine time"
-                        class="bg-transparent w-full outline-none text-[18px] font-semibold text-white">
-                    <img src="assets/Edit Square.png" alt="edit" class="w-4 h-4 opacity-40">
-                </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2 text-white/90">Email</label>
+                <input type="email" placeholder="email@example.com" 
+                       class="w-full bg-[#474554] border-none rounded-md px-4 py-4 text-sm placeholder:text-white focus:outline-none">
             </div>
 
-            <div class="space-y-2">
-                <label class="text-[14px] font-semibold text-white">Enter User ID</label>
-                <div class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full flex items-center">
-                    <input type="text" id="userIdInput" placeholder="enter user id"
-                        class="bg-transparent w-full outline-none text-sm text-white placeholder:text-white/30">
-                    <button onclick="document.getElementById('userIdInput').value='ALL_USERS'"
-                        class="bg-[#ffd972] hover:bg-[#ffcc41] text-black text-[10px] font-bold px-3 py-1.5 rounded-[3px] ml-2 shrink-0 transition-colors">
-                        For All Users
-                    </button>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <label class="text-[14px] font-semibold text-white">Set Your Time</label>
-                <div class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-5 flex justify-between items-center relative cursor-pointer" 
-                     onclick="document.getElementById('timeInput').showPicker()">
-                    <span class="text-white text-sm">Set Reminder Time</span>
-                    
-                    <div class="flex items-baseline gap-2">
-                        <input type="time" id="timeInput" value="08:30" 
-                               onchange="updateTimeDisplay(this.value)"
-                               class="absolute inset-0 opacity-0 cursor-pointer">
-                        <span id="displayTime" class="text-[48px] font-bold leading-none text-white tracking-tighter">08:30</span>
-                        <div class="flex flex-col text-[12px] font-bold leading-tight uppercase">
-                            <span id="pmLabel" class="text-white/20">pm</span>
-                            <span id="amLabel" class="text-white">am</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <div>
+                <div>
+    <label class="block text-sm font-medium mb-2 text-white/90">Payment method</label>
+    <div class="relative bg-[#323243] rounded-md border border-white/50 overflow-hidden">
+        
+        <div onclick="togglePaymentOptions()" class="relative flex items-center justify-between px-4 py-4 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/50">
             <div class="flex items-center gap-3">
-                <label class="text-[16px] font-semibold text-white shrink-0">Set Day</label>
-                <div class="relative w-32">
-                    <select class="bg-black/40 border border-white/20 rounded-[5px] w-full p-2 text-xs appearance-none outline-none text-white pr-6 cursor-pointer">
-                        <option>Custom</option>
-                        <option>Everyday</option>
-                        <option>Weekends</option>
-                    </select>
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white/40 pointer-events-none">▼</span>
-                </div>
-                <div class="relative w-32">
-                    <select class="bg-[#d66a52] rounded-[5px] w-full p-2 text-xs appearance-none outline-none font-bold text-white pr-6 shadow-lg shadow-[#d66a52]/20 cursor-pointer">
-                        <option>Repeat</option>
-                        <option>Once</option>
-                    </select>
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[8px] text-white pointer-events-none">▼</span>
-                </div>
+                <span id="selected-text" class="text-sm text-white">Card information</span>
             </div>
+            <div class="flex items-center gap-2">
+                                <img id="selected-icon" src="assets/Vector.png" alt="Visa" class="h-4">
 
-            <div class="bg-white rounded-[5px] p-4 flex justify-between items-center w-full shadow-inner">
-                <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">S</span>
-                <span onclick="toggleDay(this)" class="day-circle active w-8 h-8 flex items-center justify-center text-[13px] font-bold text-white cursor-pointer rounded-full transition-all">M</span>
-                <span onclick="toggleDay(this)" class="day-circle active w-8 h-8 flex items-center justify-center text-[13px] font-bold text-white cursor-pointer rounded-full transition-all">T</span>
-                <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">W</span>
-                <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">T</span>
-                <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">F</span>
-                <span onclick="toggleDay(this)" class="day-circle w-8 h-8 flex items-center justify-center text-[13px] font-bold text-black/20 cursor-pointer rounded-full transition-all hover:bg-black/5">S</span>
+                <span class="w-10 flex justify-end">
+                    <img id="dropdown-arrow" src="assets/v.png" alt="arrow" class="transition-transform duration-200">
+                </span>
             </div>
+        </div>
 
-            <div class="space-y-2">
-                <label class="text-[15px] font-semibold text-white">Add Special Note</label>
-                <div class="bg-[#2a2b36]/60 backdrop-blur-md border border-white/10 rounded-[5px] p-4 w-full focus-within:border-white/30">
-                    <textarea placeholder="Add Special note"
-                        class="w-full bg-transparent h-32 outline-none resize-none text-sm text-white placeholder:text-white/30"></textarea>
-                </div>
+        <div id="payment-options" class="hidden absolute left-0 right-0 bg-[#323243] border border-white/50 rounded-b-md z-50 shadow-2xl">
+            <div onclick="selectPayment('Visa Card', 'assets/Vector.png')" class="flex items-center gap-3 px-4 py-3 hover:bg-[#5d83f1] cursor-pointer border-b border-white/50">
+                <img src="assets/Vector.png" alt="Visa" class="h-4">
+                <span class="text-sm">Visa Card</span>
             </div>
+            <div onclick="selectPayment('MasterCard', 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg')" class="flex items-center gap-3 px-4 py-3 hover:bg-[#5d83f1] cursor-pointer border-b border-white/5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" class="h-4">
+                <span class="text-sm">MasterCard</span>
+            </div>
+        </div>
 
-            <div class="flex justify-start">
-                <button onclick="handleRoutineSubmit()"
-                    class="bg-[#d66a52] hover:bg-[#c05a42] text-white font-bold py-3.5 px-12 rounded-[5px] text-[16px] shadow-xl shadow-[#d66a52]/30 transition-all active:scale-95">
-                    Add Routine
-                </button>
+        <div class="flex bg-[#1a1b26]">
+            <input type="text" placeholder="MM/YY" class="w-1/2 bg-transparent border-r border-white/10 px-4 py-4 text-sm outline-none placeholder:text-white">
+            <div class="w-1/2 flex items-center px-4 py-4">
+                <input type="text" placeholder="CVC" class="w-full bg-transparent border-none text-sm outline-none placeholder:text-white">
+                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+function togglePaymentOptions() {
+    const options = document.getElementById('payment-options');
+    const arrow = document.getElementById('dropdown-arrow');
+    options.classList.toggle('hidden');
+    arrow.style.transform = options.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+function selectPayment(name, iconSrc) {
+    document.getElementById('selected-text').innerText = name;
+    document.getElementById('selected-icon').src = iconSrc;
+    togglePaymentOptions();
+}
+</script>
+                   
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2 text-white/90">Cardholder name</label>
+                <input type="text" placeholder="Full name on card" 
+                       class="w-full bg-[#474554] border-none rounded-md px-4 py-4 text-sm placeholder:text-white outline-none">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2 text-white/90">Billing Address</label>
+                <div class="border border-white/50 rounded-md overflow-hidden bg-[#1a1b26]">
+                    <div class="relative border-b border-white/50">
+                        <select class="w-full bg-transparent px-4 py-4 text-sm outline-none appearance-none text-white cursor-pointer">
+                            <option>United States</option>
+                        </select>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"><img src="assets/v.png" alt=""></span>
+                    </div>
+                    <input type="text" placeholder="City" class="w-full bg-transparent px-4 py-4 text-sm outline-none border-b border-white/50 placeholder:text-white">
+                    <div class="flex border-b border-white/50">
+                        <div class="relative w-1/2 border-r border-white/50">
+                            <select class="w-full bg-transparent px-4 py-4 text-sm outline-none appearance-none text-white">
+                                <option>Province / State</option>
+                            </select>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"><img src="assets/v.png" alt=""></span>
+                        </div>
+                        <input type="text" placeholder="Zip" class="w-1/2 bg-transparent px-4 py-4 text-sm outline-none placeholder:text-white">
+                    </div>
+                    <input type="text" placeholder="Street Address" class="w-full bg-transparent px-4 py-4 text-sm outline-none placeholder:text-white">
+                </div>
+            </div>
+
+            <div class="flex gap-4 pt-6">
+                <button onclick="document.getElementById('PaymentOverlay').classList.add('hidden')" 
+                        class="flex-1 bg-white text-[#5d83f1] font-semibold py-4 rounded-md hover:bg-gray-100 transition-colors">
+                    Back
+                </button>
+                <button onclick="openpayModal()"
+                 class="flex-1 bg-[#e27d60] text-white font-semibold py-4 rounded-md hover:bg-[#d16c50] transition-colors">
+                    $350 Pay
+                </button>
+            </div>
+
+            <div class="flex items-center justify-start gap-2 text-white text-xs mt-4">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                Your credit card information is encrypted
+            </div>
+        </div>
+    </div>
+    <div id="allpapers"
+     class="absolute inset-0 z-[50] hidden flex items-start justify-center bg-[#1a1b26] overflow-y-auto no-scrollbar pt-10 px-10">
+    
+    <div class="absolute inset-0" onclick="closeoArticalModal()"></div>
+
+    <div class="relative w-full max-w-[1200px] text-white z-10">
+        
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-3xl font-bold font-sans">Top Research Theories</h2>
+        </div>
+
+        <div class="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/10 to-transparent mb-8"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 pb-20">
+            
+            <div class="flex flex-col space-y-3 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl aspect-video bg-[#252535]">
+                    <img src="assets/empathy.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Theory">
+                </div>
+                <h4 class="text-[14px] font-semibold leading-snug tracking-wide group-hover:text-gray-300 transition-colors">
+                    Blending AI with Empathy: How Friendcovery is Redefining Wellness Support
+                </h4>
+                <button onclick="openViewDetail1Modal()"
+                class="text-[12px] text-[#FFD972] font-bold underline decoration-1 underline-offset-4 self-start hover:text-[#ffebad]">
+                    View Details
+                </button>
+            </div>
+
+            <div class="flex flex-col space-y-3 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl aspect-video bg-[#252535]">
+                    <img src="assets/healthier.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Theory">
+                </div>
+                <h4 class="text-[14px] font-semibold leading-snug tracking-wide">
+                    From Isolation to Connection: Building a Healthier You with Friendcovery
+                </h4>
+                <button class="text-[12px] text-[#FFD972] font-bold underline decoration-1 underline-offset-4 self-start">
+                    View Details
+                </button>
+            </div>
+
+            <div class="flex flex-col space-y-3 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl aspect-video bg-[#252535]">
+                    <img src="assets/Welliness.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Theory">
+                </div>
+                <h4 class="text-[14px] font-semibold leading-snug tracking-wide">
+                    Why Whole-Person Wellness Matters—And How Friendcovery Delivers It Daily
+                </h4>
+                <button class="text-[12px] text-[#FFD972] font-bold underline decoration-1 underline-offset-4 self-start">
+                    View Details
+                </button>
+            </div>
+
+            <div class="flex flex-col space-y-3 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl aspect-video bg-[#252535]">
+                    <img src="assets/support.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Theory">
+                </div>
+                <h4 class="text-[14px] font-semibold leading-snug tracking-wide">
+                    Blending AI with Empathy: How Friendcovery is Redefining Wellness Support
+                </h4>
+                <button class="text-[12px] text-[#FFD972] font-bold underline decoration-1 underline-offset-4 self-start">
+                    View Details
+                </button>
+            </div>
+
+            <div class="flex flex-col space-y-3 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl aspect-video bg-[#252535]">
+                    <img src="assets/child.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Theory">
+                </div>
+                <h4 class="text-[14px] font-semibold leading-snug tracking-wide">
+                    From Isolation to Connection: Building a Healthier You with Friendcovery
+                </h4>
+                <button class="text-[12px] text-[#FFD972] font-bold underline decoration-1 underline-offset-4 self-start">
+                    View Details
+                </button>
+            </div>
+
+            <div class="flex flex-col space-y-3 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl aspect-video bg-[#252535]">
+                    <img src="assets/people.JPG" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Theory">
+                </div>
+                <h4 class="text-[14px] font-semibold leading-snug tracking-wide">
+                    Why Whole-Person Wellness Matters—And How Friendcovery Delivers It Daily
+                </h4>
+                <button class="text-[12px] text-[#FFD972] font-bold underline decoration-1 underline-offset-4 self-start">
+                    View Details
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="Detailview1" class="absolute inset-0 z-[50] hidden flex items-start justify-center bg-[#1a1b26] overflow-y-auto no-scrollbar pt-10 px-10">
+    
+    <div class="absolute inset-0" onclick="closeoViewDetail2Modal()"></div>
+
+    <div class="relative w-full max-w-[1000px] text-white z-10 pb-20">
+        
+        <div class="w-full rounded-[15px] overflow-hidden mb-8 shadow-2xl">
+            <img src="assets/empathy.JPG" alt="Article Header" class="w-full h-auto object-cover">
+        </div>
+
+        <p class="text-[#FFD972] text-sm font-medium mb-4 cursor-pointer hover:underline">Category</p>
+
+        <h1 class="text-4xl font-bold leading-tight mb-8">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </h1>
+
+        <div class="space-y-6 text-gray-300 text-[15px] leading-relaxed text-justify">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 mt-10 mb-8">
+            <span class="text-white/60 text-sm font-medium">#ABCD</span>
+            <span class="text-white/60 text-sm font-medium">#HEALTH</span>
+            <span class="text-white/60 text-sm font-medium">#ABCD</span>
+            <span class="text-white/60 text-sm font-medium">#HEALTH</span>
+        </div>
+
+        <div class="pt-6 border-t border-white/10">
+            <p class="text-[#e27d60] font-bold text-sm mb-4">Share Now</p>
+            <div class="flex items-center gap-3">
+                <a href="#" class="w-8 h-8 bg-[#3b5998] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-facebook-f text-xs text-white">
+                        <img src="assets/Facility Provider - Articles/facebook.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#00acee] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-twitter text-xs text-white">
+                        <img src="assets/Facility Provider - Articles/twitter.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#0077b5] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-linkedin-in text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/linkedin.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#e4405f] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-instagram text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/instagram.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#bd081c] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-pinterest text-xs text-white">
+                        <img src="assets/Facility Provider - Articles/pinterest.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#25d366] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-whatsapp text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/whatsapp.png" class="w-5 h-5" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#ff6600] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fas fa-rss text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/image 4.png" class="w-8 h-8"  alt="">
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Detailview2" class="absolute inset-0 z-[50] hidden flex items-start justify-center bg-[#1a1b26] overflow-y-auto no-scrollbar pt-10 px-10">
+    
+    <div class="absolute inset-0" onclick="closeoArticalModal()"></div>
+
+    <div class="relative w-full max-w-[1000px] text-white z-10 pb-20">
+        
+        <div class="w-full rounded-[15px] overflow-hidden mb-8 shadow-2xl">
+            <img src="assets/empathy.JPG" alt="Article Header" class="w-full h-auto object-cover">
+        </div>
+
+        <p class="text-[#FFD972] text-sm font-medium mb-4 cursor-pointer hover:underline">Category</p>
+
+        <h1 class="text-4xl font-bold leading-tight mb-8">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </h1>
+
+        <div class="space-y-6 text-gray-300 text-[15px] leading-relaxed text-justify">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 mt-10 mb-8">
+            <span class="text-white/60 text-sm font-medium">#ABCD</span>
+            <span class="text-white/60 text-sm font-medium">#HEALTH</span>
+            <span class="text-white/60 text-sm font-medium">#ABCD</span>
+            <span class="text-white/60 text-sm font-medium">#HEALTH</span>
+        </div>
+
+        <div class="pt-6 border-t border-white/10">
+            <p class="text-[#e27d60] font-bold text-sm mb-4">Share Now</p>
+            <div class="flex items-center gap-3">
+                <a href="#" class="w-8 h-8 bg-[#3b5998] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-facebook-f text-xs text-white">
+                        <img src="assets/Facility Provider - Articles/facebook.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#00acee] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-twitter text-xs text-white">
+                        <img src="assets/Facility Provider - Articles/twitter.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#0077b5] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-linkedin-in text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/linkedin.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#e4405f] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-instagram text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/instagram.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#bd081c] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-pinterest text-xs text-white">
+                        <img src="assets/Facility Provider - Articles/pinterest.png" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#25d366] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fab fa-whatsapp text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/whatsapp.png" class="w-5 h-5" alt="">
+                    </i>
+                </a>
+                <a href="#" class="w-8 h-8 bg-[#ff6600] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <i class="fas fa-rss text-xs text-white">
+                         <img src="assets/Facility Provider - Articles/image 4.png" class="w-8 h-8"  alt="">
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="patientModal" class="absolute inset-0 z-[50]  hidden bg-[#1a1a2e] backdrop-blur-sm items-center justify-center p-4">
+    
+    <div class="bg-[#1a1a2e] w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl border border-gray-700/50 shadow-2xl text-[#e1e1e6] no-scrollbar">
+        
+        <div class="sticky top-0 bg-[#1a1a2e] z-10 flex justify-end p-4">
+            <button onclick="closePatientsModal()" class="text-gray-400 hover:text-white transition-colors text-2xl">&times;</button>
+        </div>
+
+        <div class="p-8 pt-0 space-y-6">
+            <div class="grid grid-cols-12 gap-6">
+                 <div class="col-span-12 md:col-span-4 bg-[#1a1a2e] border border-[#FFFFFF5E] rounded-[5px]  p-8 flex flex-col items-center justify-center text-center">
+                    <div class="w-40 h-40 bg-white rounded-full overflow-hidden mb-4 p-1">
+                        <img src="assets/da0d2feab3c70f4bc76deba7f338c9103f04dc23.png" alt="Avatar" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h2 class="text-lg font-medium">Abdullah Wajid</h2>
+                </div>
+                <div class="col-span-12 md:col-span-8 bg-[#1a1a2e] border border-[#FFFFFF5E] rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-6">Bio & Other Details</h3>
+                    <div class="grid grid-cols-2 gap-y-6 text-sm">
+                        <div><p class="text-gray-500 mb-1">User Name</p><p class="font-light">Abdullah Wajid</p></div>
+                        <div><p class="text-gray-500 mb-1">Email</p><p class="font-light">AbdullahWajid@gmail.com</p></div>
+                        <div><p class="text-gray-500 mb-1">Phone Number*</p><p class="font-light">+9232478655185</p></div>
+                        <div><p class="text-gray-500 mb-1">Facility Provider</p><p class="font-light">Ranksol agency</p></div>
+                        <div><p class="text-gray-500 mb-1">Health Score</p><p class="font-light">85/100</p></div>
+                        <div><p class="text-gray-500 mb-1">Join Date</p><p class="font-light">08/04/2025</p></div>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <button class="bg-[#e67e65] text-white px-8 py-2.5 rounded hover:bg-[#d16b54] transition-all font-medium">Update Details</button>
+                        <button class="border border-gray-600 px-8 py-2.5 rounded hover:bg-gray-800 transition-all font-light">Reset Password</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#1a1a2e] border border-[#FFFFFF5E] rounded-[5px]  p-6">
+                <h3 class="text-xl font-semibold mb-6">Emergency Contact</h3>
+                <div class="grid grid-cols-3 gap-6 text-sm mb-6">
+                    <div><p class="text-gray-500 mb-1">Guardian Name</p><p>Abdullah Wajid</p></div>
+                    <div><p class="text-gray-500 mb-1">Email</p><p>AbdullahWajid@gmail.com</p></div>
+                    <div><p class="text-gray-500 mb-1">Guardian Phone Number</p><p>+971 25 258 2589</p></div>
+                </div>
+              <div class="inline-block mt-4">
+    <button class="flex items-center gap-2 text-white hover:text-white/80 transition-all">
+        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-[#e67e65] text-[#1a1a2e] font-bold text-sm">
+            +
+        </div>
+        <span class="text-[14px] font-normal tracking-wide">Add another field</span>
+    </button>
+
+    <div class="w-full h-[1px] bg-[#ffffff40] mt-1"></div>
+</div>
+                                        
+
+                <div class="mt-6">
+                    <button class="bg-[#e67e65] text-white px-10 py-2.5 rounded-[5px] ">Update Details</button>
+                </div>
+            </div>
+
+    
+    <div class="bg-[#1a1a2e] w-full max-w-6xl max-h-[95vh] overflow-y-auto rounded-[5px]  border border-gray-700/50 shadow-2xl text-[#e1e1e6] custom-scrollbar p-8">
+        
+        <div class="grid grid-cols-12 gap-6 mt-6">
+            
+            <div class="col-span-12 md:col-span-6 space-y-6">
+                
+                <div class="bg-[#131323] border border-gray-700/30 rounded-[5px]  p-6 flex justify-between items-center shadow-inner">
+                    <div class="max-w-[200px]">
+                        <h3 class="text-2xl font-semibold leading-tight text-white">Your Overall Wellness Score</h3>
+                        <p class="text-gray-400 text-sm mt-3">Moderate – Let's improve your sleep habits.</p>
+                        <button class="mt-6 bg-[#DC6B5A] text-white px-5 py-2.5 rounded-lg text-sm font-semibold">View Complete Score</button>
+                    </div>
+                    
+                    <div class="relative w-36 h-36 flex items-center justify-center">
+                        <svg class="w-full h-full -rotate-90">
+                            <circle cx="72" cy="72" r="60" stroke="white" stroke-width="12" fill="transparent" />
+                            <circle cx="72" cy="72" r="60" stroke="#DC6B5A" stroke-width="12" fill="transparent" stroke-dasharray="377" stroke-dashoffset="207" stroke-linecap="round" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-3xl font-bold">45%</span>
+                            <span class="text-[10px] text-[#FFD972]   tracking-widest mt-1">Health Score</span>
+                        </div>
+                    </div>
+                </div>
+
+              <div class="col-span-12 md:col-span-6 mt-4">
+    <div class="bg-[#242231] border border-[#ffffff10] rounded-[5px] p-4 flex justify-start items-center">
+        
+        <div class="flex gap-4">
+            
+            <button class="bg-white text-[#131323] px-4 py-2 rounded-[4px] font-bold text-[13px] whitespace-nowrap shadow-sm hover:bg-gray-100 transition-all">
+                Check Patient Daily routine
+            </button>
+            
+            <button class="border border-[#ffffff5e] text-white px-4 py-2 rounded-[4px] font-medium text-[13px] whitespace-nowrap bg-transparent hover:bg-[#ffffff05] transition-all">
+                Schedule Meeting
+            </button>
+            
+        </div>
+        
+    </div>
+</div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 bg-[#242231] border border-gray-700/30 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-2">Family Members</h3>
+                        <div class="w-full h-px bg-gradient-to-r from-white to-gray-800 bg-white/20 mb-5"></div>
+                <p class="text-gray-400 text-xs mb-6 leading-relaxed">
+                    Manage the people connected to your care journey. Add or remove trusted individuals who can support your wellness plan and stay informed.
+                </p>
+                
+                <div class="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full border border-gray-600 overflow-hidden">
+                                <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png" alt="user">
+                            </div>
+                            <span class="text-sm font-medium">Alex Blackmore</span>
+                        </div>
+                        <button class="bg-[#DC6B5A] text-white px-4 py-1.5 rounded text-[11px]  ">Remove</button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full border border-gray-600 overflow-hidden">
+                                <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png" alt="user">
+                            </div>
+                            <span class="text-sm font-medium">Nadine Eckhard</span>
+                        </div>
+                        <button class="bg-[#DC6B5A] text-white px-4 py-1.5 rounded text-[11px]  ">Remove</button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full border border-gray-600 overflow-hidden">
+                                <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png" alt="user">
+                            </div>
+                            <span class="text-sm font-medium">Nadine Eckhard</span>
+                        </div>
+                        <button class="bg-[#DC6B5A] text-white px-4 py-1.5 rounded text-[11px]  ">Remove</button>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full border border-gray-600 overflow-hidden">
+                                <img src="https://i.pravatar.cc/100?u=3" alt="user">
+                            </div>
+                            <span class="text-sm font-medium">Deacon Smith</span>
+                        </div>
+                        <button class="bg-[#e67e65] text-white px-4 py-1.5 rounded text-[11px] font-bold uppercase">Remove</button>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div>
+</div>
+        </div>
+    </div>
+    <style>
+        .custom-scrollbar::-webkit-no-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-no-scrollbar-track {
+    background: #1a1a2e;
+}
+
+    </style>
+</div>
+
+
+
+</div>
+ 
+
+<!-- routineOverlay scripte -->
 <script>
     // Toggle Day Selection
     function toggleDay(element) {
@@ -787,6 +1574,72 @@
         document.getElementById('routineOverlay').classList.add('hidden');
         document.body.style.overflow = '';
     }
+</script>
+<!-- updateOverlay scripte -->
+<script>
+    function openSubModal() {
+        document.getElementById('updateOverlay').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubModal() {
+        document.getElementById('updateOverlay').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+ function openSubscriptionModal() {
+        document.getElementById('SubscriptionOverlay').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscriptionModal() {
+        document.getElementById('SubscriptionOverlay').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+     function openSubscribeModal() {
+        document.getElementById('PaymentOverlay').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('PaymentOverlay').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+      function openpayModal(){
+        document.getElementById('payOverlay').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closepayModal() {
+        document.getElementById('payOverlay').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    function openArticalModal(){
+        document.getElementById('allpapers').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeArticalModal() {
+        document.getElementById('allpapers').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+         function openViewDetail1Modal(){
+        document.getElementById('Detailview1').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeViewDetail1Modal(){
+        document.getElementById('Detailview1').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    //patients 
+    function openPatientsModal() {
+    const modal = document.getElementById('patientModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex'); // Centering k liye flex use kiya
+    document.body.style.overflow = ''; // Screen scroll na ho
+}
+
+function closePatientsModal() {
+    const modal = document.getElementById('patientModal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
 </script>
         </div>
     </div>
