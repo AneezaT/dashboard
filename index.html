@@ -96,7 +96,7 @@
 
     <div class="flex flex-col space-y-2 pl-2 text-[#9494b8] text-[12px]">
         <div class="menu-item p-2 rounded-[4px] flex items-center gap-3 cursor-pointer hover:bg-[#3f3f51]/50 transition-all" 
-             onclick="setActiveMenu(this, '/all-patients');openPatientsModal()">
+             onclick="setActiveMenu(this, '/all-patients');openallPatientsModal()">
              <span class="pl-7">All Patients</span>
         </div>
         
@@ -161,8 +161,8 @@ function setActiveMenu(element, path) {
             <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-2">
                 <div class="bg-[#d66a52] p-4 rounded-[4px] flex flex-col gap-3">
                     <img src="assets/Group 521 (1).png" class="w-8 h-8 opacity-90" alt="icon">
-                    <h2 class="text-white text-[16px] font-bold leading-tight">Create Session / <br> Meeting with
-                        Patients</h2>
+                    <button class="text-white text-[16px] font-bold leading-tight " onclick="openScheduleModal()" >Create Session / <br> Meeting with
+                        Patients</button>
                     <p class="text-white/90 text-[10px] leading-relaxed">Plan personalized check-ins, wellness sessions,
                         or consultations tailored to individual needs.</p>
                     <div class="border-t border-white/10 pt-2 mt-1">
@@ -641,7 +641,7 @@ function setActiveMenu(element, path) {
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Deacon Smith</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">View
                                         Details</button>
                                 </div>
@@ -651,7 +651,7 @@ function setActiveMenu(element, path) {
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Alex Blackmore</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
                                 </div>
@@ -661,7 +661,7 @@ function setActiveMenu(element, path) {
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Nadine Eckhard</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
                                 </div>
@@ -671,17 +671,17 @@ function setActiveMenu(element, path) {
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Deacon Smith</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
-                                </div>
+                                </div> 
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-4">
                                         <img src="assets/44b387054433803441f904b5e2444947156ecf7b.png"
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Alex Blackmore</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
                                 </div>
@@ -691,7 +691,7 @@ function setActiveMenu(element, path) {
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Nadine Eckhard</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
                                 </div>
@@ -701,13 +701,12 @@ function setActiveMenu(element, path) {
                                             class="w-10 h-10 rounded-full object-cover">
                                         <span class="text-white font-medium">Deacon Smith</span>
                                     </div> <span class="text-[#a1a3c7]">Score 71/100</span>
-                                    <button
+                                    <button onclick="openPatientsModal()"
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
                                 </div>
 
                                 <div class="flex gap-6">
-                                    <button
                                         class="flex-1 bg-[#e06a52] hover:bg-[#cc5c46] text-white py-4 rounded-lg font-semibold">Add
                                         New Member</button>
                                     <button
@@ -1507,6 +1506,7 @@ function selectPayment(name, iconSrc) {
 </div>
         </div>
     </div>
+
     <style>
         .custom-scrollbar::-webkit-no-scrollbar {
     width: 6px;
@@ -1516,6 +1516,330 @@ function selectPayment(name, iconSrc) {
 }
 
     </style>
+   <!-- <div id="scheduleModal" 
+     class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-10 bg-[#1f1f2c]/80 overflow-y-auto no-scrollbar">
+    
+    <div class="bg-[#4a4754] w-full max-w-md rounded-[5px] shadow-2xl overflow-hidden p-8 relative">
+        
+        <div class="flex justify-between items-start mb-6">
+            <h2 class="text-white text-2xl font-bold leading-tight max-w-[250px]">
+                Schedule Video Meeting
+            </h2>
+            <div class="text-white">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                </svg>
+            </div>
+        </div>
+
+        <p class="text-gray-200 text-sm mb-8 leading-relaxed">
+            Set up a convenient time for a video consultation with your doctor or facility provider.
+        </p>
+
+        <div class="space-y-6">
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">User Name / ID</label>
+                <input type="text" placeholder="[Enter name]" 
+                    class="w-full bg-[#6b6875] border-none rounded-[5px] p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#e67e65] outline-none">
+            </div>
+
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Date</label>
+                <input type="text" placeholder="[MM/DD/YYYY]" 
+                    class="w-full bg-[#6b6875] border-none rounded-[5px] p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#e67e65] outline-none">
+            </div>
+
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Time</label>
+                <input type="text" placeholder="[HH:MM AM/PM]" 
+                    class="w-full bg-[#6b6875] border-none rounded-[5px] p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-[#e67e65] outline-none">
+            </div>
+
+            <div class="pt-4 space-y-4 text-center">
+                <button  onclick="showMeetingLink()"  class="w-full bg-[#DC6B5A] hover:bg-[#d16b54] text-white py-3 rounded-[5px]  text-lg transition-all shadow-lg">
+                    Confirm
+                </button>
+                
+                <button onclick="closeScheduleModal()" class="block w-full text-white text-sm underline hover:text-gray-200 transition-all">
+                    Create Instant Meeting
+                </button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div id="scheduleModal" 
+     class="absolute inset-0 z-[60] hidden flex items-center justify-center bg-[#0b0b15]/90 backdrop-blur-sm p-4 overflow-y-auto">
+    
+    <div class="bg-[#4a4754] w-full max-w-md rounded-[10px] shadow-2xl p-8 relative">
+        
+        <div class="flex justify-between items-start mb-4">
+            <h2 class="text-white text-3xl font-bold leading-tight max-w-[220px]">
+                Schedule Video Meeting
+            </h2>
+            <div class="text-white pt-1">
+                <svg width="55" height="55" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                </svg>
+            </div>
+        </div>
+
+        <p class="text-gray-200 text-[13px] mb-8 leading-relaxed opacity-90">
+            Set up a convenient time for a video consultation with your doctor or facility provider.
+        </p>
+
+        <div id="meetingForm" class="space-y-5">
+            <div>
+                <label class="block text-white text-sm font-medium mb-1.5">User Name / ID</label>
+                <input type="text" placeholder="[Enter name]" 
+                    class="w-full bg-[#6b6875] border-none rounded-[6px] p-3 text-white placeholder-gray-400 focus:ring-1 focus:ring-[#e67e65] outline-none">
+            </div>
+
+            <div>
+                <label class="block text-white text-sm font-medium mb-1.5">Date</label>
+                <input type="text" placeholder="[MM/DD/YYYY]" 
+                    class="w-full bg-[#6b6875] border-none rounded-[6px] p-3 text-white placeholder-gray-400 focus:ring-1 focus:ring-[#e67e65] outline-none">
+            </div>
+
+            <div>
+                <label class="block text-white text-sm font-medium mb-1.5">Time</label>
+                <input type="text" placeholder="[HH:MM AM/PM]" 
+                    class="w-full bg-[#6b6875] border-none rounded-[6px] p-3 text-white placeholder-gray-400 focus:ring-1 focus:ring-[#e67e65] outline-none">
+            </div>
+
+            <div class="pt-4 space-y-4">
+                <button onclick="showMeetingLink()" class="w-full bg-[#e67e65] hover:bg-[#d16b54] text-white py-3 rounded-[6px] text-[16px] font-semibold transition-all shadow-lg">
+                    Confirm
+                </button>
+                <button onclick="closeScheduleModal()" class="block w-full text-white text-sm underline opacity-80 hover:opacity-100 text-center">
+                    Create Instant Meeting
+                </button>
+            </div>
+        </div>
+
+        <div id="meetingSuccess" class="hidden space-y-8 py-4">
+            <div class="relative">
+                <input type="text" readonly value="https://meet.google.com/ufc-xhvx-pnk" 
+                    class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 pr-12 text-white text-[13px] outline-none">
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <button class="w-full bg-[#e67e65] text-white py-3 rounded-[6px] font-semibold text-[16px] shadow-lg">
+                    Invite Patients
+                </button>
+                <button onclick="resetModal()" class="block w-full text-white text-sm underline opacity-80 hover:opacity-100 text-center">
+                    Create Meeting For Later
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="allPatientsModal" 
+class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-10 bg-[#1a1a2e] overflow-y-auto no-scrollbar backdrop-blur-sm">
+    <div class="bg-[#1a1a2e] w-full max-w-6xl rounded-[10px]  p-10 relative ">
+        
+        <div class="flex flex-col md:flex-row gap-10 mb-16">
+            <div class="bg-[#242231] w-full max-w-[300px] rounded-[12px] p-6 border border-white/5 shadow-xl">
+                <h3 class="text-white text-lg font-semibold mb-6">New Patient Request</h3>
+                <div class="space-y-4">
+                    <div onclick="openJoinRequestModal()" class="bg-[#474554] rounded-[8px] p-3 flex items-center justify-between cursor-pointer  transition-all">
+                        <div class="flex items-center gap-3">
+                            <img src="assets/0c70e08adbba723ef2e0748f71bc2462b8f65b31.png" class="w-9 h-9 rounded-full border border-white/10" alt="">
+                            <span class="text-white text-sm font-medium">Deacon Smith</span>
+                        </div>
+                        <span class="text-[#FFD972] text-xs  underline">View</span>
+                    </div>
+                    <div class="bg-[#474554] rounded-[8px] p-3 flex items-center justify-between opacity-80">
+                        <div class="flex items-center gap-3">
+                            <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" class="w-9 h-9 rounded-full" alt="">
+                            <span class="text-white text-sm font-medium">Deacon Smith</span>
+                        </div>
+                        <span class="text-[#FFD972] text-xs underline">View</span>
+                    </div>
+                     <div class="bg-[#474554] rounded-[8px] p-3 flex items-center justify-between opacity-80">
+                        <div class="flex items-center gap-3">
+                            <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" class="w-9 h-9 rounded-full" alt="">
+                            <span class="text-white text-sm font-medium">Deacon Smith</span>
+                        </div>
+                        <span class="text-[#FFD972] text-xs  underline">View</span>
+                    </div>
+                     <div class="bg-[#474554] rounded-[8px] p-3 flex items-center justify-between opacity-80">
+                        <div class="flex items-center gap-3">
+                            <img src="assets/9e841f0acdec077bf837ea204956b0bf18e7bf8b.png" class="w-9 h-9 rounded-full" alt="">
+                            <span class="text-white text-sm font-medium">Deacon Smith</span>
+                        </div>
+                        <span class="text-[#FFD972] text-xs  underline">View</span>
+                    </div>
+                </div>
+                <button class="mt-8 text-white/70 text-sm underline hover:text-white">View All Request</button>
+            </div>
+
+            <div class="flex-1 pt-4">
+                <h2 class="text-white text-5xl  mb-6">Invite & Add New Member</h2>
+                <p class="text-gray-400 text-base max-w-xl mb-10 leading-relaxed">
+                    Manage the people connected to your care journey. Add or remove trusted individuals who can support your wellness plan and stay informed.
+                </p>
+                <button onclick="openInviteModal()" class="bg-[#e67e65] text-white px-10 py-4 rounded-[5px] font-bold text-sm shadow-lg  tracking-widest hover:bg-[#d1624b] transition-all">
+                    Invite New Patient
+                </button>
+            </div>
+        </div>
+
+        <div class="w-full bg-[#1a1a2e] p-8 rounded-xl">
+    <!-- Title #131120 -->
+    <h2 class="text-white text-3xl font-semibold mb-6">
+        All Patients Overview
+    </h2>
+
+    <!-- Header -->
+    <div class="grid grid-cols-12 items-center px-6 py-4
+                bg-[#131120] rounded-lg
+                text-white text-sm font-medium">
+        <div class="col-span-3">Patient Name</div>
+        <div class="col-span-2">Join Date</div>
+        <div class="col-span-3">Facility name</div>
+        <div class="col-span-2 text-center">Health Score</div>
+        <div class="col-span-2 text-center">View Details</div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-b border-white my-4"></div>
+
+    <!-- ROW -->
+    <div class="grid grid-cols-12 items-center px-6 py-4
+                bg-[#3a3948] rounded-lg mb-3">
+        <div class="col-span-3 flex items-center gap-3 text-white">
+            <img src="https://i.pravatar.cc/100?u=11"
+                 class="w-9 h-9 rounded-full">
+            Nadine Eckhard
+        </div>
+        <div class="col-span-2 text-gray-300">7/30/2025</div>
+        <div class="col-span-3 text-gray-300">
+            Starlight Medical Center
+        </div>
+        <div class="col-span-2 text-center text-gray-300">
+            25/100
+        </div>
+        <div class="col-span-2">
+            <button
+                class="w-full bg-[#e67963] text-white
+                       py-3 rounded-md text-sm">
+                View Details
+            </button>
+        </div>
+    </div>
+
+    <!-- ROW -->
+    <div class="grid grid-cols-12 items-center px-6 py-4
+                 rounded-lg mb-3">
+        <div class="col-span-3 flex items-center gap-3 text-white">
+            <img src="https://i.pravatar.cc/100?u=12"
+                 class="w-9 h-9 rounded-full">
+            Deacon Smith
+        </div>
+        <div class="col-span-2 text-gray-300">7/30/2025</div>
+        <div class="col-span-3 text-gray-300">
+            Bright Horizons Hospital
+        </div>
+        <div class="col-span-2 text-center text-gray-300">
+            25/100
+        </div>
+        <div class="col-span-2">
+            <button
+                class="w-full bg-[#1f1e2d] border border-[#34334a]
+                       text-gray-300 py-3 rounded-md text-sm">
+                View Details
+            </button>
+        </div>
+    </div>
+
+    <!-- ROW -->
+    <div class="grid grid-cols-12 items-center px-6 py-4
+                bg-[#3a3948] rounded-lg mb-3">
+        <div class="col-span-3 flex items-center gap-3 text-white">
+            <img src="https://i.pravatar.cc/100?u=13"
+                 class="w-9 h-9 rounded-full">
+            Alex Blackmore
+        </div>
+        <div class="col-span-2 text-gray-300">7/30/2025</div>
+        <div class="col-span-3 text-gray-300">
+            Evergreen Health Institute
+        </div>
+        <div class="col-span-2 text-center text-gray-300">
+            25/100
+        </div>
+        <div class="col-span-2">
+            <button
+                class="w-full bg-[#e67963] text-white
+                       py-3 rounded-md text-sm">
+                View Details
+            </button>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<div id="inviteModal" 
+class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-10 bg-[#0b0b15]/90 overflow-y-auto no-scrollbar backdrop-blur-sm">
+    <div class="bg-[#4a4754] w-full max-w-md rounded-[10px] p-10 shadow-3xl">
+        <h2 class="text-white text-3xl  mb-10">New Patient Invitation</h2>
+        <div class="space-y-6">
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Name*</label>
+                <input type="text" placeholder="[Enter name]" class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white placeholder-white/30 outline-none">
+            </div>
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Phone Number*</label>
+                <input type="text" placeholder="[Enter phone number]" class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white placeholder-white/30 outline-none">
+            </div>
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Email*</label>
+                <input type="text" placeholder="[Enter email]" class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white placeholder-white/30 outline-none">
+            </div>
+            <button onclick="closeInviteModal()" class="w-full bg-[#e67e65] text-white py-4 mt-6 rounded-[6px] font-bold text-lg hover:bg-[#d1624b] transition-all">Send Invite</button>
+        </div>
+    </div>
+</div>
+
+<div id="joinRequestModal"
+class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-10 bg-[#0b0b15]/90 overflow-y-auto no-scrollbar backdrop-blur-sm">
+    <div class="bg-[#4a4754] w-full max-w-md rounded-[10px] p-10 shadow-3xl">
+        <h2 class="text-white text-3xl font-bold mb-10">Join Request</h2>
+        <div class="space-y-6">
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Name*</label>
+                <input type="text" value="User Name" readonly class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white outline-none">
+            </div>
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Phone Number*</label>
+                <input type="text" value="User Phone Number" readonly class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white outline-none">
+            </div>
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Email*</label>
+                <input type="text" placeholder="[Enter email]" class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white placeholder-white/30 outline-none">
+            </div>
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Facility Provider</label>
+                <select class="w-full bg-[#6b6875] border-none rounded-[6px] p-4 text-white outline-none appearance-none cursor-pointer">
+                    <option>Ranksol_Kohenoor</option>
+                </select>
+            </div>
+            <div class="flex gap-4 pt-6">
+                <button onclick="closeJoinModal()" class="flex-1 bg-[#e67e65] text-white py-4 rounded-[6px] font-bold hover:bg-[#d1624b] transition-all">Approve</button>
+                <button onclick="closeJoinModal()" class="flex-1 border border-white/20 text-white py-4 rounded-[6px] font-bold bg-[#3d3a48] hover:bg-[#454252] transition-all">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
 </div>
 
 
@@ -1639,7 +1963,70 @@ function closePatientsModal() {
     modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
 }
+// Function to show the modal  meeting 
+function openScheduleModal() {
+    const modal = document.getElementById('scheduleModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden'; // Stop background scroll
+}
 
+// Function to close the modal
+function closeScheduleModal() {
+    const modal = document.getElementById('scheduleModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal if clicked outside the box
+window.onclick = function(event) {
+    const modal = document.getElementById('scheduleModal');
+    if (event.target == modal) {
+        closeScheduleModal();
+    }
+}
+ //meeetinggg
+
+function showMeetingLink() {
+    // Hide Form view
+    document.getElementById('meetingForm').classList.add('hidden');
+    // Show Success view
+    document.getElementById('meetingSuccess').classList.remove('hidden');
+}
+
+function resetModal() {
+    // Switch back to Form view
+    document.getElementById('meetingSuccess').classList.add('hidden');
+    document.getElementById('meetingForm').classList.remove('hidden');
+}
+
+function closeScheduleModal() {
+    document.getElementById('scheduleModal').classList.add('hidden');
+    resetModal(); // Reset to form view for next time
+}
+// 1. All Patients Modal Open/Close
+function openallPatientsModal() {
+    document.getElementById('allPatientsModal').classList.remove('hidden');
+}
+
+// 2. Open New Patient Invitation from All Patients
+function openInviteModal() {
+    document.getElementById('inviteModal').classList.remove('hidden');
+}
+
+function closeInviteModal() {
+    document.getElementById('inviteModal').classList.add('hidden');
+}
+
+// 3. Open Join Request (View button par click)
+function openJoinRequestModal() {
+    document.getElementById('joinRequestModal').classList.remove('hidden');
+}
+
+function closeJoinModal() {
+    document.getElementById('joinRequestModal').classList.add('hidden');
+}
 </script>
         </div>
     </div>
