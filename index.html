@@ -158,21 +158,27 @@ function setActiveMenu(element, path) {
                 </div>
             </div>
 
-            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-2">
+            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-2" onclick="openScheduleModal()">
                 <div class="bg-[#d66a52] p-4 rounded-[4px] flex flex-col gap-3">
-                    <img src="assets/Group 521 (1).png" class="w-8 h-8 opacity-90" alt="icon">
-                    <button class="text-white text-[16px] font-bold leading-tight " onclick="openScheduleModal()" >Create Session / <br> Meeting with
-                        Patients</button>
-                    <p class="text-white/90 text-[10px] leading-relaxed">Plan personalized check-ins, wellness sessions,
-                        or consultations tailored to individual needs.</p>
-                    <div class="border-t border-white/10 pt-2 mt-1">
-                        <div class="flex items-center gap-2">
-                            <span class="text-white text-[13px] font-bold">→ Schedule Meeting</span>
-                        </div>
-                        <p class="text-white/70 text-[9px] pl-4">Coordinate times, set objectives, and ensure seamless
-                         communication.</p>
-                    </div>
-                </div>
+    <img src="assets/Group 521 (1).png" class="w-8 h-8 opacity-90 mx-auto" alt="icon">
+    
+    <h2 class="text-white text-[16px] font-bold leading-tight">
+        Create Session / <br> Meeting with Patients
+    </h2>
+    
+    <p class="text-white/90 text-[10px] leading-relaxed">
+        Plan personalized check-ins, wellness sessions, or consultations tailored to individual needs.
+    </p>
+    
+    <div class="border-t border-white/10 pt-2 mt-1">
+        <div class="flex items-center gap-2">
+            <span class="text-white text-[13px] font-bold">→ Schedule Meeting</span>
+        </div>
+        <p class="text-white/70 text-[9px] pl-4">
+            Coordinate times, set objectives, and ensure seamless communication.
+        </p>
+    </div>
+</div>
             </div>
         </aside>
 
@@ -705,13 +711,15 @@ function setActiveMenu(element, path) {
                                         class="bg-[#ffd166] text-black px-4 py-2 rounded-md text-[13px] font-semibold">
                                         View Details </button>
                                 </div>
-
                                 <div class="flex gap-6">
-                                        class="flex-1 bg-[#e06a52] hover:bg-[#cc5c46] text-white py-4 rounded-lg font-semibold">Add
-                                        New Member</button>
-                                    <button
-                                        class="flex-1 border border-white/40 text-white py-4 rounded-lg font-semibold">Export
-                                        User Data</button>
+                                    <button class="flex-1 bg-[#e06a52] hover:bg-[#cc5c46]
+                       text-white py-4 rounded-lg font-semibold">
+                                        Add New Member
+                                    </button>
+                                    <button class="flex-1 border border-white/40
+                       text-white py-4 rounded-lg font-semibold">
+                                        Export User Data
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1569,7 +1577,7 @@ function selectPayment(name, iconSrc) {
 </div> -->
 
 <div id="scheduleModal" 
-     class="absolute inset-0 z-[60] hidden flex items-center justify-center bg-[#0b0b15]/90 backdrop-blur-sm p-4 overflow-y-auto">
+     class="absolute inset-0 z-[60] hidden flex items-center justify-center bg-[#0b0b15]/90 backdrop-blur-sm p-4 overflow-y-auto no-scrollbar">
     
     <div class="bg-[#4a4754] w-full max-w-md rounded-[10px] shadow-2xl p-8 relative">
         
@@ -1676,7 +1684,7 @@ class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-1
                         <span class="text-[#FFD972] text-xs  underline">View</span>
                     </div>
                 </div>
-                <button class="mt-8 text-white/70 text-sm underline hover:text-white">View All Request</button>
+                <button class="mt-8 text-white text-sm underline hover:text-white">View All Request</button>
             </div>
 
             <div class="flex-1 pt-4">
@@ -1704,7 +1712,7 @@ class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-1
         <div class="col-span-2">Join Date</div>
         <div class="col-span-3">Facility name</div>
         <div class="col-span-2 text-center">Health Score</div>
-        <div class="col-span-2 text-center">View Details</div>
+        <div class="col-span-2 underline text-center">View Details</div>
     </div>
 
     <!-- Divider -->
