@@ -158,7 +158,7 @@ function setActiveMenu(element, path) {
                 </div>
             </div>
 
-            <div class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-2" onclick="openScheduleModal()">
+            <button class="bg-[#1e1e2d] border border-[#2d2d3d] rounded-[4px] p-2" onclick="openScheduleModal()">
                 <div class="bg-[#d66a52] p-4 rounded-[4px] flex flex-col gap-3">
     <img src="assets/Group 521 (1).png" class="w-8 h-8 opacity-90 mx-auto" alt="icon">
     
@@ -179,7 +179,7 @@ function setActiveMenu(element, path) {
         </p>
     </div>
 </div>
-            </div>
+            </button>
         </aside>
 
         <!-- MAIN CONTENT AREA -->
@@ -1734,7 +1734,7 @@ class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-1
             25/100
         </div>
         <div class="col-span-2">
-            <button
+            <button  onclick="openPatientsModal()"
                 class="w-full bg-[#e67963] text-white
                        py-3 rounded-md text-sm">
                 View Details
@@ -1758,7 +1758,7 @@ class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-1
             25/100
         </div>
         <div class="col-span-2">
-            <button
+            <button 
                 class="w-full bg-[#1f1e2d] border border-[#34334a]
                        text-gray-300 py-3 rounded-md text-sm">
                 View Details
@@ -1781,8 +1781,8 @@ class="absolute inset-0 z-[50] hidden flex items-start justify-center py-10 px-1
         <div class="col-span-2 text-center text-gray-300">
             25/100
         </div>
-        <div class="col-span-2">
-            <button
+        <div  class="col-span-2">
+            <button 
                 class="w-full bg-[#e67963] text-white
                        py-3 rounded-md text-sm">
                 View Details
